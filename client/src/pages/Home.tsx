@@ -11,9 +11,9 @@ export default function Home() {
         </a>
         <nav className="site-nav" aria-label="Universe portals">
           <a href="#signal">THE SIGNAL</a>
-          <a className="nav-wordmark" href="#travel">fourtee2travel</a>
-          <a href="#music">4[music]2</a>
-          <a href="#you">4[you]2</a>
+          <a className="nav-wordmark" href="/travel">fourtee2travel</a>
+          <a href="/music">4[music]2</a>
+          <a href="/you">4[you]2</a>
         </nav>
       </header>
 
@@ -67,7 +67,7 @@ export default function Home() {
           </div>
           <div className="portal-grid">
             <article id="travel" className="portal portal--travel">
-              <a className="portal__link" href="#travel-field" aria-label="Explore fourtee2travel">
+              <a className="portal__link" href="/travel" aria-label="Explore fourtee2travel">
                 <img src="/manus-storage/card-travel_bf8bb539.jpg" alt="Earth at night viewed from space" />
                 <div className="portal__wash" aria-hidden="true" />
                 <span className="portal__tag">TRAVEL</span>
@@ -80,7 +80,7 @@ export default function Home() {
             </article>
 
             <article id="music" className="portal portal--music">
-              <a className="portal__link" href="#music-field" aria-label="Explore 4 music 2">
+              <a className="portal__link" href="/music" aria-label="Explore 4 music 2">
                 <img src="/manus-storage/card-music_0929e7cc.jpg" alt="Milky Way over a mountain ridge" />
                 <div className="portal__wash" aria-hidden="true" />
                 <span className="portal__tag">MUSIC</span>
@@ -93,7 +93,7 @@ export default function Home() {
             </article>
 
             <article id="you" className="portal portal--you">
-              <a className="portal__link" href="#you-field" aria-label="Explore 4 you 2">
+              <a className="portal__link" href="/you" aria-label="Explore 4 you 2">
                 <img src="/manus-storage/card-you_7c45eb9e.jpg" alt="Dark purple flowing fabric texture" />
                 <div className="portal__wash" aria-hidden="true" />
                 <span className="portal__tag portal__tag--soon">○ COMING<br />SOON</span>
@@ -113,7 +113,7 @@ export default function Home() {
             <h2 id="index-title">Select a field.<br />Begin the scan.</h2>
           </div>
           <div className="index-list">
-            <a id="travel-field" href="#travel" className="index-entry index-entry--travel">
+            <a id="travel-field" href="/travel" className="index-entry index-entry--travel">
               <span className="index-entry__number">01</span>
               <div>
                 <h3 className="wordmark">fourtee2travel</h3>
@@ -121,7 +121,7 @@ export default function Home() {
               </div>
               <span className="index-entry__state">OPEN <b>↗</b></span>
             </a>
-            <a id="music-field" href="#music" className="index-entry index-entry--music">
+            <a id="music-field" href="/music" className="index-entry index-entry--music">
               <span className="index-entry__number">02</span>
               <div>
                 <h3 className="wordmark">4[music]2</h3>
@@ -129,7 +129,7 @@ export default function Home() {
               </div>
               <span className="index-entry__state">OPEN <b>↗</b></span>
             </a>
-            <a id="you-field" href="#you" className="index-entry index-entry--you">
+            <a id="you-field" href="/you" className="index-entry index-entry--you">
               <span className="index-entry__number">03</span>
               <div>
                 <h3 className="wordmark">4[you]2</h3>
@@ -154,9 +154,9 @@ export default function Home() {
       <footer className="site-footer">
         <a className="wordmark wordmark--footer" href="#top">fourtee2</a>
         <nav aria-label="Footer navigation">
-          <a className="nav-wordmark" href="#travel">fourtee2travel</a>
-          <a href="#music">4[music]2</a>
-          <a href="#you">4[you]2</a>
+          <a className="nav-wordmark" href="/travel">fourtee2travel</a>
+          <a href="/music">4[music]2</a>
+          <a href="/you">4[you]2</a>
         </nav>
         <p>© 2026 <span className="wordmark wordmark--copyright">fourtee2</span></p>
       </footer>

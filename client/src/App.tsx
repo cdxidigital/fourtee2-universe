@@ -5,6 +5,7 @@ import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
+import { PortalPage } from "./pages/PortalPage";
 
 /**
  * fourtee2 Astral Editorial System: Event Horizon Black, cosmic photography,
@@ -15,6 +16,9 @@ function Router() {
   return (
     <Switch>
       <Route path={"/"} component={Home} />
+      <Route path={"/travel"}>{() => <PortalPage portal="travel" />}</Route>
+      <Route path={"/music"}>{() => <PortalPage portal="music" />}</Route>
+      <Route path={"/you"}>{() => <PortalPage portal="you" />}</Route>
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />

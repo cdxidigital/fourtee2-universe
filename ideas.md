@@ -33,3 +33,5 @@ The supplied reference image is the non-negotiable visual specification for this
 ## Style Decisions
 
 The expanded system reads as an **archival navigation instrument**, not a conventional campaign page. Every large non-wordmark headline must be grounded by a monospaced index or field-note label, portal imagery must behave as asymmetric cinematic viewing wells with inky embedded wordmarks, and the voice must favor short navigational commands over explanatory brand prose.
+
+Each portal is a separate transmission rather than a reskinned template: **fourtee2travel** uses route-lines, terrain coordinates, and restrained city-light gold; **4[music]2** uses waveform logic, scan-line frequency, and night cobalt; **4[you]2** uses soft ritual geometry, violet material fields, and body-orbit forms.
