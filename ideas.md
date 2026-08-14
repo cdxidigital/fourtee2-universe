@@ -29,3 +29,7 @@ The supplied reference image is the non-negotiable visual specification for this
 **Wordmark & Logo:** The fourtee2 wordmark is the primary signature and is always set in Righteous. Its thick, rounded geometry contrasts with the small, engineered mono labels and remains the page’s brightest visual anchor.
 
 **Signature Brand Color:** **Event Horizon Black** — `#030405` — establishes an ownable field that lets the universe, not the interface, emit light.
+
+## Style Decisions
+
+The expanded system reads as an **archival navigation instrument**, not a conventional campaign page. Every large non-wordmark headline must be grounded by a monospaced index or field-note label, portal imagery must behave as asymmetric cinematic viewing wells with inky embedded wordmarks, and the voice must favor short navigational commands over explanatory brand prose.
