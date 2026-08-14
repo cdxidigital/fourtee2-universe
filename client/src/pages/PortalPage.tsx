@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { CSSProperties } from "react";
+import type { CSSProperties, FormEvent } from "react";
 import "./portal-fallback.css";
 import { SaveSignalButton } from "@/components/SaveSignalButton";
 
@@ -222,6 +222,17 @@ const travelPriorities = [
 function TravelIntelligence() {
   const [priority, setPriority] = useState<(typeof travelPriorities)[number]["id"]>("value");
   const active = travelPriorities.find(item => item.id === priority) ?? travelPriorities[1];
+  const [origin, setOrigin] = useState("Perth (PER)");
+  const [destination, setDestination] = useState("");
+  const [departureDate, setDepartureDate] = useState("2026-10-14");
+  const [returnDate, setReturnDate] = useState("2026-10-21");
+  const [passengers, setPassengers] = useState("1 traveller");
+  const [routeSignal, setRouteSignal] = useState("");
+
+  const handleSearch = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setRouteSignal(`${origin.toUpperCase()} / ${destination.toUpperCase()} / ${active.label} / ${passengers.toUpperCase()}`);
+  };
 
   return (
     <section className="travel-intelligence" aria-labelledby="intelligence-title">
@@ -230,6 +241,18 @@ function TravelIntelligence() {
         <h2 id="intelligence-title">Decide what<br /><span>the route means.</span></h2>
         <p>Every destination can be optimised differently. Choose the signal that matters most before the search begins.</p>
       </div>
+      <form className="travel-search" onSubmit={handleSearch} aria-label="fourtee2travel route search">
+        <div className="travel-search__heading"><p>ROUTE INPUT / REQUIRED</p><span>01 — 04</span></div>
+        <div className="travel-search__fields">
+          <label><span>ORIGIN</span><input value={origin} onChange={(event) => setOrigin(event.target.value)} placeholder="City or airport" required autoComplete="off" /></label>
+          <label><span>DESTINATION</span><input value={destination} onChange={(event) => setDestination(event.target.value)} placeholder="Where to?" required autoComplete="off" /></label>
+          <label><span>DEPART</span><input type="date" value={departureDate} min="2026-08-15" onChange={(event) => setDepartureDate(event.target.value)} required /></label>
+          <label><span>RETURN</span><input type="date" value={returnDate} min={departureDate} onChange={(event) => setReturnDate(event.target.value)} required /></label>
+          <label><span>TRAVELLERS</span><select value={passengers} onChange={(event) => setPassengers(event.target.value)}><option>1 traveller</option><option>2 travellers</option><option>3 travellers</option><option>4 travellers</option><option>5+ travellers</option></select></label>
+          <button type="submit">SET ROUTE <b>↗</b></button>
+        </div>
+        <p className={routeSignal ? "travel-search__status is-active" : "travel-search__status"} aria-live="polite">{routeSignal ? `ROUTE SIGNAL LOCKED / ${routeSignal}` : "ENTER THE COORDINATES. THE FIELD WILL HOLD THE INTENT."}</p>
+      </form>
       <div className="travel-intelligence__console">
         <div className="travel-intelligence__choices" role="tablist" aria-label="Travel priority">
           {travelPriorities.map((item) => (

@@ -37,3 +37,9 @@
 - [x] Translate fourtee2travel’s full-spectrum travel intelligence promise into the portal narrative and journey.
 - [x] Build a preference-led travel-intelligence interface for cheapest, best value, and luxury routes.
 - [x] Validate the revised fourtee2travel experience across desktop and mobile before saving.
+
+## fourtee2travel Trip Search
+
+- [x] Define the origin, destination, travel dates, and passenger selection behavior.
+- [x] Build an accessible trip-search interface integrated with route-priority selection.
+- [x] Validate the trip-search interface across desktop and mobile before saving.
