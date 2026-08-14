@@ -1,8 +1,17 @@
+import { useAuth } from "@/_core/hooks/useAuth";
+
 /**
  * fourtee2 Astral Editorial System: cosmic portal layout with Righteous-only
  * fourtee2 wordmarks, IBM Plex Mono interface labels, and cinematic image wells.
  */
 export default function Home() {
+  // The useAuth hook provides authentication state.
+  // To implement login/logout, call logout(), or start login from an event
+  // handler: onClick={() => startLogin()} (imported from "@/const"). Never call
+  // startLogin() during render (no href={startLogin()}) — it mints a one-time
+  // nonce cookie and must run only at the moment of navigation.
+  let { user, loading, error, isAuthenticated, logout } = useAuth();
+
   return (
     <div className="universe-shell">
       <header className="site-header" aria-label="Primary navigation">
@@ -14,6 +23,7 @@ export default function Home() {
           <a className="nav-wordmark" href="/travel">fourtee2travel</a>
           <a href="/music">4[music]2</a>
           <a href="/you">4[you]2</a>
+          <a href="/board">BOARD</a>
         </nav>
       </header>
 

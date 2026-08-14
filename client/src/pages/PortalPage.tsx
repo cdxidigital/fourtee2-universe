@@ -1,6 +1,7 @@
 import { useState } from "react";
 import type { CSSProperties } from "react";
 import "./portal-fallback.css";
+import { SaveSignalButton } from "@/components/SaveSignalButton";
 
 /**
  * fourtee2 Astral Editorial System: dedicated archival portal pages use shared
@@ -135,6 +136,7 @@ function MusicPlayer() {
           <h2 id="player-title">Night field<br /><span>in rotation.</span></h2>
           <p>A continuously updated electronic field for late miles, low rooms and the spaces between arrivals.</p>
           <a href="https://open.spotify.com/playlist/37i9dQZF1DX4WYpdgoIcn6" target="_blank" rel="noreferrer">OPEN IN SPOTIFY <b>↗</b></a>
+          <SaveSignalButton signal={{ signalType: "playlist", portal: "music", sourceId: "spotify-night-rider", title: "Night field in rotation", subtitle: "4[music]2 / Spotify transmission", href: "/music" }} />
         </div>
         <div className="music-player__frame-wrap">
           <div className="music-player__scan" aria-hidden="true"><i /><i /><i /><i /><i /></div>
@@ -204,6 +206,7 @@ function TravelFieldNotes() {
           <h3>{activeDestination.name}</h3>
           <span>{activeDestination.lat.toFixed(4)}° / {activeDestination.lng.toFixed(4)}°</span>
           <blockquote>{activeDestination.note}</blockquote>
+          <SaveSignalButton signal={{ signalType: "destination", portal: "travel", sourceId: `reference-route-${activeDestination.id}`, title: activeDestination.name, subtitle: `${activeDestination.location} / field route`, href: "/travel" }} />
         </article>
       </div>
     </section>
@@ -220,6 +223,7 @@ export function PortalPage({ portal }: { portal: PortalKey }) {
         <a className="wordmark portal-header__home" href="/" aria-label="Return to fourtee2 home">fourtee2</a>
         <p className="portal-header__transmission">{data.eyebrow}</p>
         <nav aria-label="Portal navigation">
+          <a href="/board">BOARD</a>
           <a className={data.key === "travel" ? "is-current nav-wordmark" : "nav-wordmark"} href="/travel">fourtee2travel</a>
           <a className={data.key === "music" ? "is-current" : ""} href="/music">4[music]2</a>
           <a className={data.key === "you" ? "is-current" : ""} href="/you">4[you]2</a>

@@ -16,3 +16,12 @@
 - [x] Define the listening and destination-coordinate interactions for the music and travel portals.
 - [x] Embed a functional music player in 4[music]2 and an interactive map-driven field-note interface in fourtee2travel.
 - [x] Validate the new interactive experiences across device sizes, then save the updated universe.
+
+## Personalised Platform and Content Management
+
+- [x] Define the signal-board, saved-item, and destination-archive data models and package the reusable fourtee2 workflow skill.
+- [x] Enable secure user accounts and managed storage for saved signals and travel field notes.
+- [x] Build the personal signal board, CMS destination archive, and animated portal transitions.
+- [x] Validate user flows, CMS updates, and responsive transitions before saving the platform update.
+- [ ] Exercise the authenticated save and unsave flow and verify the personal signal board reflects the change.
+- [ ] Exercise archive create, update, and delete operations and verify the public archive reflects the published state.

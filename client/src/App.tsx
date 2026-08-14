@@ -1,28 +1,39 @@
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
-import { Route, Switch } from "wouter";
+import { AnimatePresence, motion } from "framer-motion";
+import { Route, Switch, useLocation } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
+import "./platform.css";
+import ArchiveCommand from "./pages/ArchiveCommand";
 import Home from "./pages/Home";
 import { PortalPage } from "./pages/PortalPage";
+import SignalBoard from "./pages/SignalBoard";
+import TravelArchive from "./pages/TravelArchive";
 
 /**
  * fourtee2 Astral Editorial System: Event Horizon Black, cosmic photography,
  * Righteous brand wordmarks, and restrained monospaced interface language.
  */
-
 function Router() {
+  const [location] = useLocation();
   return (
-    <Switch>
-      <Route path={"/"} component={Home} />
-      <Route path={"/travel"}>{() => <PortalPage portal="travel" />}</Route>
-      <Route path={"/music"}>{() => <PortalPage portal="music" />}</Route>
-      <Route path={"/you"}>{() => <PortalPage portal="you" />}</Route>
-      <Route path={"/404"} component={NotFound} />
-      {/* Final fallback route */}
-      <Route component={NotFound} />
-    </Switch>
+    <AnimatePresence mode="wait" initial={false}>
+      <motion.div key={location} className="route-shell" initial={{ opacity: 0, y: 7 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -5 }} transition={{ duration: 0.24, ease: [0.23, 1, 0.32, 1] }}>
+        <Switch>
+          <Route path={"/"} component={Home} />
+          <Route path={"/travel"}>{() => <PortalPage portal="travel" />}</Route>
+          <Route path={"/music"}>{() => <PortalPage portal="music" />}</Route>
+          <Route path={"/you"}>{() => <PortalPage portal="you" />}</Route>
+          <Route path={"/board"} component={SignalBoard} />
+          <Route path={"/archive/command"} component={ArchiveCommand} />
+          <Route path={"/archive"} component={TravelArchive} />
+          <Route path={"/404"} component={NotFound} />
+          <Route component={NotFound} />
+        </Switch>
+      </motion.div>
+    </AnimatePresence>
   );
 }
 
