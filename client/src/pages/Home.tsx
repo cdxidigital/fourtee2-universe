@@ -82,7 +82,7 @@ export default function Home() {
                 <div className="portal__wash" aria-hidden="true" />
                 <span className="portal__tag">TRAVEL</span>
                 <div className="portal__meta">
-                  <p>⌁ flights · hotels · deals</p>
+                  <p>⌁ cheapest · value · luxury</p>
                   <h2 className="wordmark wordmark--portal">fourtee2travel</h2>
                   <span className="portal__enter">ENTER PORTAL <b>→</b></span>
                 </div>
@@ -127,7 +127,7 @@ export default function Home() {
               <span className="index-entry__number">01</span>
               <div>
                 <h3 className="wordmark">fourtee2travel</h3>
-                <p>Choose by feeling. Arrive with a better story.</p>
+                <p>Any destination. Your priority: cheapest, best value or luxury.</p>
               </div>
               <span className="index-entry__state">OPEN <b>↗</b></span>
             </a>

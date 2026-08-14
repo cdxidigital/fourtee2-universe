@@ -32,24 +32,24 @@ const portals: Record<PortalKey, PortalConfig> = {
     key: "travel",
     wordmark: "fourtee2travel",
     eyebrow: "TRANSMISSION 01 / TERRAIN FIELD",
-    designation: "WORLD / MOVEMENT / ARRIVAL",
-    headline: "Choose the place by the feeling it leaves behind.",
+    designation: "WORLD / INTELLIGENCE / ARRIVAL",
+    headline: "Any world. Your way.",
     image: "/manus-storage/card-travel_bf8bb539.jpg",
     imageAlt: "Earth at night with illuminated cities seen from orbit",
-    intro: "fourtee2travel is a reference field for places worth going slightly out of your way for. Begin with a feeling, then make the route answer it.",
-    note: "Not a booking engine. A better reason to book.",
-    orbit: "THE MAP IS A MOOD",
-    axisTitle: "Route assembly",
+    intro: "fourtee2travel is the one-stop travel destination for every journey in the universe. Name the place, set the dates, decide what matters most—and let the field resolve the route around you.",
+    note: "Cheapest. Best value. Most luxurious. The route begins with your definition of worth.",
+    orbit: "THE WHOLE WORLD / YOUR SIGNAL",
+    axisTitle: "Travel intelligence",
     axes: [
-      { code: "A / 01", title: "Locate", description: "Find the coordinate that changes the temperature of the day." },
-      { code: "A / 02", title: "Stay", description: "Keep places with a point of view, not just a vacancy." },
-      { code: "A / 03", title: "Return", description: "Save the fragments that make somewhere worth revisiting." },
+      { code: "A / 01", title: "Price radar", description: "Find the lowest viable fare, stay and transfer combination for the journey." },
+      { code: "A / 02", title: "Value engine", description: "Balance price, location, comfort and time so the trip gives more than it takes." },
+      { code: "A / 03", title: "Luxury field", description: "Prioritise the stay, seat and small details that make the arrival exceptional." },
     ],
-    logTitle: "Field log / departure sequence",
+    logTitle: "Intelligence log / departure sequence",
     log: [
-      { sequence: "01", title: "The first light", detail: "Build around one slow morning in an unfamiliar neighbourhood." },
-      { sequence: "02", title: "The long table", detail: "Choose the seat, the sound, and the person before choosing the menu." },
-      { sequence: "03", title: "After arrival", detail: "Leave enough unplanned space for the place to answer back." },
+      { sequence: "01", title: "Set the signal", detail: "Choose the destination, timing and outcome that will make this journey worth taking." },
+      { sequence: "02", title: "Scan the field", detail: "Compare flights, stays and routes through the lens you chose—not a one-size-fits-all result." },
+      { sequence: "03", title: "Move with certainty", detail: "Save the route that meets your standard, then keep the entire journey close on your signal board." },
     ],
     status: "FIELD OPEN / ROUTES IN FORMATION",
   },
@@ -160,8 +160,8 @@ function TravelFieldNotes() {
     <section className="travel-notes" aria-labelledby="notes-title">
       <div className="travel-notes__header">
         <p className="section-label">LIVE FIELD NOTES / COORDINATES</p>
-        <h2 id="notes-title">Select a<br />departure point.</h2>
-        <p>Choose a marker to pull the map toward the field note. Coordinates remain open for the route ahead.</p>
+        <h2 id="notes-title">Start anywhere.<br />Go everywhere.</h2>
+        <p>Set a departure point, then let the travel intelligence field pull the rest of the journey into focus.</p>
       </div>
       <div className="travel-notes__interface">
         <aside className="travel-notes__list" aria-label="Destination field notes">
@@ -207,6 +207,42 @@ function TravelFieldNotes() {
           <span>{activeDestination.lat.toFixed(4)}° / {activeDestination.lng.toFixed(4)}°</span>
           <blockquote>{activeDestination.note}</blockquote>
           <SaveSignalButton signal={{ signalType: "destination", portal: "travel", sourceId: `reference-route-${activeDestination.id}`, title: activeDestination.name, subtitle: `${activeDestination.location} / field route`, href: "/travel" }} />
+        </article>
+      </div>
+    </section>
+  );
+}
+
+const travelPriorities = [
+  { id: "lowest", number: "01", label: "CHEAPEST", title: "Lowest viable fare", description: "Keep the route lean. The field prioritises the most economical combination of fare, stay and transfer.", metric: "PRICE / FIRST" },
+  { id: "value", number: "02", label: "BEST VALUE", title: "Worth more than it costs", description: "Balance location, timing, comfort and price to find the journey that returns the most for every dollar.", metric: "RETURN / FIRST" },
+  { id: "luxury", number: "03", label: "LUXURY", title: "The elevated route", description: "Put exceptional stays, thoughtful service and effortless movement at the centre of the travel field.", metric: "EXPERIENCE / FIRST" },
+] as const;
+
+function TravelIntelligence() {
+  const [priority, setPriority] = useState<(typeof travelPriorities)[number]["id"]>("value");
+  const active = travelPriorities.find(item => item.id === priority) ?? travelPriorities[1];
+
+  return (
+    <section className="travel-intelligence" aria-labelledby="intelligence-title">
+      <div className="travel-intelligence__header">
+        <p className="section-label">TRAVEL INTELLIGENCE / PRIORITY FIELD</p>
+        <h2 id="intelligence-title">Decide what<br /><span>the route means.</span></h2>
+        <p>Every destination can be optimised differently. Choose the signal that matters most before the search begins.</p>
+      </div>
+      <div className="travel-intelligence__console">
+        <div className="travel-intelligence__choices" role="tablist" aria-label="Travel priority">
+          {travelPriorities.map((item) => (
+            <button key={item.id} type="button" role="tab" aria-selected={priority === item.id} className={priority === item.id ? "is-active" : ""} onClick={() => setPriority(item.id)}>
+              <span>{item.number}</span><strong>{item.label}</strong><i aria-hidden="true">↗</i>
+            </button>
+          ))}
+        </div>
+        <article className="travel-intelligence__readout" aria-live="polite">
+          <p>ACTIVE PRIORITY / {active.metric}</p>
+          <h3>{active.title}</h3>
+          <blockquote>{active.description}</blockquote>
+          <div><span>ANY DESTINATION</span><span>FLIGHTS / STAYS / TRANSFERS</span><span>FIELD READY</span></div>
         </article>
       </div>
     </section>
@@ -261,7 +297,7 @@ export function PortalPage({ portal }: { portal: PortalKey }) {
         </section>
 
         {portal === "music" && <MusicPlayer />}
-        {portal === "travel" && <TravelFieldNotes />}
+        {portal === "travel" && <><TravelFieldNotes /><TravelIntelligence /></>}
 
         <section className={`portal-axes portal-axes--${data.key}`} aria-labelledby="axes-title">
           <div className="portal-axes__header">
