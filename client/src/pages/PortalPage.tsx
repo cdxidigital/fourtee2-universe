@@ -1,4 +1,6 @@
+import { useState } from "react";
 import type { CSSProperties } from "react";
+import "./portal-fallback.css";
 
 /**
  * fourtee2 Astral Editorial System: dedicated archival portal pages use shared
@@ -102,6 +104,112 @@ const portals: Record<PortalKey, PortalConfig> = {
   },
 };
 
+type Destination = {
+  id: string;
+  number: string;
+  name: string;
+  location: string;
+  lat: number;
+  lng: number;
+  mapX: number;
+  mapY: number;
+  note: string;
+};
+
+const destinations: Destination[] = [
+  { id: "perth", number: "01", name: "Perth", location: "WA / AU", lat: -31.953512, lng: 115.857048, mapX: 81, mapY: 76, note: "A long westward light. Start at the river, then let the coast alter the route." },
+  { id: "tokyo", number: "02", name: "Tokyo", location: "KANTO / JP", lat: 35.6762, lng: 139.6503, mapX: 86, mapY: 39, note: "Follow the quiet alleys after the last train. Keep the first coffee unplanned." },
+  { id: "lisbon", number: "03", name: "Lisbon", location: "LISBOA / PT", lat: 38.7223, lng: -9.1393, mapX: 42, mapY: 42, note: "Look for the hill with the late tables. Let the city decide when to descend." },
+];
+
+function MusicPlayer() {
+  return (
+    <section className="music-player" aria-labelledby="player-title">
+      <div className="music-player__header">
+        <p className="section-label">LIVE TRANSMISSION / 001</p>
+        <p>SPOTIFY PLAYBACK — CURRENT ROTATION</p>
+      </div>
+      <div className="music-player__deck">
+        <div className="music-player__meta">
+          <p className="music-player__status"><i /> SIGNAL AVAILABLE</p>
+          <h2 id="player-title">Night field<br /><span>in rotation.</span></h2>
+          <p>A continuously updated electronic field for late miles, low rooms and the spaces between arrivals.</p>
+          <a href="https://open.spotify.com/playlist/37i9dQZF1DX4WYpdgoIcn6" target="_blank" rel="noreferrer">OPEN IN SPOTIFY <b>↗</b></a>
+        </div>
+        <div className="music-player__frame-wrap">
+          <div className="music-player__scan" aria-hidden="true"><i /><i /><i /><i /><i /></div>
+          <iframe
+            className="music-player__frame"
+            title="4 music 2 live Spotify playlist"
+            src="https://open.spotify.com/embed/playlist/37i9dQZF1DX4WYpdgoIcn6?utm_source=generator&theme=0"
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function TravelFieldNotes() {
+  const [activeDestination, setActiveDestination] = useState(destinations[0]);
+
+  return (
+    <section className="travel-notes" aria-labelledby="notes-title">
+      <div className="travel-notes__header">
+        <p className="section-label">LIVE FIELD NOTES / COORDINATES</p>
+        <h2 id="notes-title">Select a<br />departure point.</h2>
+        <p>Choose a marker to pull the map toward the field note. Coordinates remain open for the route ahead.</p>
+      </div>
+      <div className="travel-notes__interface">
+        <aside className="travel-notes__list" aria-label="Destination field notes">
+          {destinations.map((destination) => (
+            <button
+              type="button"
+              key={destination.id}
+              className={activeDestination.id === destination.id ? "is-active" : ""}
+              onClick={() => setActiveDestination(destination)}
+              aria-pressed={activeDestination.id === destination.id}
+            >
+              <span>{destination.number}</span>
+              <strong>{destination.name}</strong>
+              <em>{destination.location}</em>
+              <i aria-hidden="true">↗</i>
+            </button>
+          ))}
+        </aside>
+        <div className="travel-notes__map-wrap">
+          <div className="travel-notes__coordinate-map" aria-label="Interactive fourtee2travel coordinate map">
+            <div className="travel-notes__latitude" aria-hidden="true"><i /><i /><i /><i /><i /></div>
+            <div className="travel-notes__longitude" aria-hidden="true"><i /><i /><i /><i /><i /></div>
+            <span className="travel-notes__route travel-notes__route--one" aria-hidden="true" />
+            <span className="travel-notes__route travel-notes__route--two" aria-hidden="true" />
+            {destinations.map((destination) => (
+              <button
+                type="button"
+                key={destination.id}
+                className={activeDestination.id === destination.id ? "is-active" : ""}
+                style={{ left: `${destination.mapX}%`, top: `${destination.mapY}%` }}
+                onClick={() => setActiveDestination(destination)}
+                aria-label={`View ${destination.name} field note`}
+              >
+                <i>{destination.number}</i><span>{destination.name}</span>
+              </button>
+            ))}
+          </div>
+          <div className="travel-notes__map-index" aria-hidden="true">MAP / TERRAIN / 042</div>
+        </div>
+        <article className="travel-notes__active-note">
+          <p>ACTIVE NOTE / {activeDestination.number}</p>
+          <h3>{activeDestination.name}</h3>
+          <span>{activeDestination.lat.toFixed(4)}° / {activeDestination.lng.toFixed(4)}°</span>
+          <blockquote>{activeDestination.note}</blockquote>
+        </article>
+      </div>
+    </section>
+  );
+}
+
 export function PortalPage({ portal }: { portal: PortalKey }) {
   const data = portals[portal];
   const heroStyle = { "--portal-image": `url(${data.image})` } as CSSProperties;
@@ -147,6 +255,9 @@ export function PortalPage({ portal }: { portal: PortalKey }) {
             <p>COORDINATE<br />LOCKED</p>
           </div>
         </section>
+
+        {portal === "music" && <MusicPlayer />}
+        {portal === "travel" && <TravelFieldNotes />}
 
         <section className={`portal-axes portal-axes--${data.key}`} aria-labelledby="axes-title">
           <div className="portal-axes__header">

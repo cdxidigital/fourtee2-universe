@@ -1,0 +1,111 @@
+/* fourtee2 Astral Editorial System: stable terrain-coordinate instrument for the travel field notes. */
+.travel-notes__map-wrap {
+  position: relative;
+  min-height: 445px;
+  overflow: hidden;
+  border-right: 1px solid rgba(229, 188, 112, 0.27);
+  background: radial-gradient(ellipse at 66% 50%, rgba(50, 70, 84, 0.48), transparent 32%), #090907;
+}
+.travel-notes__coordinate-map {
+  position: relative;
+  width: 100%;
+  min-height: 445px;
+  overflow: hidden;
+  background-image:
+    linear-gradient(rgba(212, 180, 114, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(212, 180, 114, 0.08) 1px, transparent 1px),
+    radial-gradient(ellipse at 50% 54%, rgba(55, 71, 65, 0.28), transparent 49%);
+  background-position: center;
+  background-size: 55px 55px, 55px 55px, cover;
+}
+.travel-notes__coordinate-map::before {
+  position: absolute;
+  inset: -22%;
+  border: 1px solid rgba(222, 186, 112, 0.22);
+  border-radius: 46% 54% 40% 60% / 49% 42% 58% 51%;
+  background:
+    radial-gradient(ellipse at 54% 48%, rgba(223, 183, 107, 0.10), transparent 10%),
+    linear-gradient(17deg, transparent 31%, rgba(222, 187, 116, 0.12) 31.2% 31.8%, transparent 32% 100%);
+  content: "";
+  transform: rotate(-15deg);
+}
+.travel-notes__coordinate-map::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 78%;
+  height: 42%;
+  border: 1px solid rgba(197, 164, 98, 0.18);
+  border-radius: 50%;
+  content: "";
+  transform: translate(-50%, -50%) rotate(24deg);
+}
+.travel-notes__latitude,
+.travel-notes__longitude {
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  opacity: 0.55;
+}
+.travel-notes__latitude { top: 50%; left: 0; width: 100%; justify-content: space-around; transform: translateY(-50%); }
+.travel-notes__longitude { top: 0; left: 50%; height: 100%; flex-direction: column; justify-content: space-around; transform: translateX(-50%); }
+.travel-notes__latitude i,
+.travel-notes__longitude i {
+  display: block;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: rgba(239, 202, 126, 0.74);
+  box-shadow: 0 0 8px rgba(239, 202, 126, 0.7);
+}
+.travel-notes__route {
+  position: absolute;
+  z-index: 1;
+  height: 1px;
+  transform-origin: left center;
+  background: linear-gradient(90deg, transparent, rgba(234, 200, 128, 0.7), transparent);
+}
+.travel-notes__route--one { top: 38%; left: 16%; width: 72%; transform: rotate(25deg); }
+.travel-notes__route--two { bottom: 28%; left: 21%; width: 65%; transform: rotate(-32deg); }
+.travel-notes__coordinate-map button {
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 0;
+  padding: 0;
+  color: rgba(244, 229, 201, 0.68);
+  background: transparent;
+  font-size: 0.5rem;
+  letter-spacing: 0.12em;
+  text-align: left;
+  transform: translate(-50%, -50%);
+  transition: color 180ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+.travel-notes__coordinate-map button i {
+  display: grid;
+  width: 23px;
+  height: 23px;
+  place-items: center;
+  border: 1px solid rgba(238, 202, 129, 0.6);
+  border-radius: 50%;
+  color: #100f0a;
+  background: rgba(232, 192, 112, 0.8);
+  font-size: 0.48rem;
+  font-style: normal;
+  font-weight: 700;
+  box-shadow: 0 0 0 0 rgba(229, 189, 108, 0.25);
+  transition: box-shadow 180ms cubic-bezier(0.23, 1, 0.32, 1), transform 180ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+.travel-notes__coordinate-map button:hover,
+.travel-notes__coordinate-map button.is-active { color: #fff1d1; }
+.travel-notes__coordinate-map button:hover i,
+.travel-notes__coordinate-map button.is-active i { box-shadow: 0 0 0 7px rgba(229, 189, 108, 0.13), 0 0 17px rgba(229, 189, 108, 0.75); transform: scale(1.12); }
+.travel-notes__coordinate-map button:focus-visible { outline: 1px solid #f1c675; outline-offset: 4px; }
+.travel-notes__map-index { z-index: 3; }
+@media (max-width: 760px) {
+  .travel-notes__map-wrap,
+  .travel-notes__coordinate-map { min-height: 340px; }
+  .travel-notes__coordinate-map button span { display: none; }
+}
