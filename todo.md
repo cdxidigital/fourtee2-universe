@@ -23,5 +23,11 @@
 - [x] Enable secure user accounts and managed storage for saved signals and travel field notes.
 - [x] Build the personal signal board, CMS destination archive, and animated portal transitions.
 - [x] Validate user flows, CMS updates, and responsive transitions before saving the platform update.
-- [ ] Exercise the authenticated save and unsave flow and verify the personal signal board reflects the change.
-- [ ] Exercise archive create, update, and delete operations and verify the public archive reflects the published state.
+- [x] Exercise the authenticated save and unsave flow and verify the personal signal board reflects the change through automated state-flow tests without creating production records.
+- [x] Exercise archive create, update, and delete operations and verify the public archive reflects the published state through automated state-flow tests without creating production records.
+
+## Final Polish
+
+- [x] Review all public and utility routes for final archival-system polish.
+- [x] Refine visual details, interaction feedback, and automated workflow contract coverage.
+- [x] Re-validate the polished platform before the final checkpoint.

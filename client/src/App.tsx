@@ -6,6 +6,7 @@ import { Route, Switch, useLocation } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import "./platform.css";
+import "./polish.css";
 import ArchiveCommand from "./pages/ArchiveCommand";
 import Home from "./pages/Home";
 import { PortalPage } from "./pages/PortalPage";
