@@ -49,3 +49,9 @@
 - [x] Define dependable airport search coverage and keyboard-autocomplete behavior.
 - [x] Implement airport suggestions for origin and destination fields with selectable route coordinates.
 - [x] Validate airport autocomplete and responsive usability before saving.
+
+## Official Suno Listening Profile
+
+- [x] Verify the official 4[music]2 Suno profile playback and embedding options.
+- [x] Embed the playable 4[music]2 Suno profile in the dedicated music portal.
+- [x] Validate the listening presentation across desktop and mobile before saving.
