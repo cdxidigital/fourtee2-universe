@@ -37,18 +37,18 @@ export default function ArchiveCommand() {
   };
 
   return <DashboardLayout><div className="archive-command">
-    <header><p className="section-label">fourtee2travel / ADMIN CONSOLE</p><h1>Archive<br /><span>command.</span></h1><p>{recordCount} FIELD NOTE{recordCount === 1 ? "" : "S"} IN MEMORY.</p></header>
+    <header><p className="section-label">fourtee2travel / DESTINATION MANAGER</p><h1>Manage<br /><span>destination notes.</span></h1><p>Create a note, add its coordinates, then choose <strong>Published</strong> to show it in the public destination archive. {recordCount} FIELD NOTE{recordCount === 1 ? "" : "S"} IN MEMORY.</p></header>
     <form onSubmit={submit} className="archive-form">
-      <div className="archive-form__heading"><p>{editId ? "EDIT COORDINATE" : "NEW COORDINATE"}</p>{editId && <button type="button" onClick={() => { setEditId(null); setForm(blankForm); }}>CANCEL EDIT</button>}</div>
-      <label>TITLE<input required value={form.title} onChange={event => setForm({ ...form, title: event.target.value })} placeholder="The first light" /></label>
+      <div className="archive-form__heading"><p>{editId ? "EDIT DESTINATION NOTE" : "ADD DESTINATION NOTE"}</p>{editId && <button type="button" onClick={() => { setEditId(null); setForm(blankForm); }}>CANCEL EDIT</button>}</div>
+      <label>NOTE TITLE<input required value={form.title} onChange={event => setForm({ ...form, title: event.target.value })} placeholder="The first light" /></label>
       <label>CITY<input required value={form.city} onChange={event => setForm({ ...form, city: event.target.value })} placeholder="Perth" /></label>
       <label>COUNTRY<input required value={form.country} onChange={event => setForm({ ...form, country: event.target.value })} placeholder="Australia" /></label>
       <label>LATITUDE<input required value={form.latitude} onChange={event => setForm({ ...form, latitude: event.target.value })} placeholder="-31.9535" /></label>
       <label>LONGITUDE<input required value={form.longitude} onChange={event => setForm({ ...form, longitude: event.target.value })} placeholder="115.8570" /></label>
       <label>IMAGE URL <input type="url" value={form.imageUrl} onChange={event => setForm({ ...form, imageUrl: event.target.value })} placeholder="Optional project asset URL" /></label>
       <label className="archive-form__wide">FIELD NOTE<textarea required value={form.note} onChange={event => setForm({ ...form, note: event.target.value })} placeholder="Write the observation that makes this coordinate worth keeping." /></label>
-      <label>STATUS<select value={form.status} onChange={event => setForm({ ...form, status: event.target.value as ArchiveForm["status"] })}><option value="draft">Draft</option><option value="published">Published</option></select></label>
-      <button className="platform-action" disabled={isBusy} type="submit">{editId ? "UPDATE FIELD NOTE" : "CREATE FIELD NOTE"} <b>↗</b></button>
+      <label>VISIBILITY<select value={form.status} onChange={event => setForm({ ...form, status: event.target.value as ArchiveForm["status"] })}><option value="draft">Draft — only visible here</option><option value="published">Published — visible to visitors</option></select></label>
+      <button className="platform-action" disabled={isBusy} type="submit">{editId ? "SAVE CHANGES" : form.status === "published" ? "PUBLISH DESTINATION NOTE" : "SAVE DRAFT"} <b>↗</b></button>
     </form>
     <section className="archive-command__records"><div className="archive-command__title"><p>ARCHIVE INDEX</p><a href="/archive">VIEW PUBLIC ARCHIVE <b>↗</b></a></div>{archive.data?.map(note => <article key={note.id}><span>{note.status.toUpperCase()}</span><div><strong>{note.title}</strong><p>{note.city} / {note.country} — {note.latitude}° / {note.longitude}°</p></div><button type="button" onClick={() => beginEdit(note)}>EDIT</button><button type="button" onClick={() => remove.mutate({ id: note.id })}>REMOVE</button></article>)}</section>
   </div></DashboardLayout>;

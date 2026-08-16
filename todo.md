@@ -55,3 +55,15 @@
 - [x] Verify the official 4[music]2 Suno profile playback and embedding options.
 - [x] Embed the playable 4[music]2 Suno profile in the dedicated music portal.
 - [x] Validate the listening presentation across desktop and mobile before saving.
+
+## Final Production Review
+
+- [x] Review all public portal routes and the live listening experience for final polish opportunities.
+- [x] Resolve visible presentation and interaction edge cases, including the native Suno audio playback fallback.
+- [x] Run final responsive and production validation before handover.
+
+## Usability and Feature Clarity
+
+- [x] Audit travel search, music playback, personal signal board, and destination archive journeys for clarity barriers.
+- [x] Simplify global navigation, calls to action, empty states, and feature guidance across core routes.
+- [x] Validate the revised experience for responsive usability and clear next actions before saving.

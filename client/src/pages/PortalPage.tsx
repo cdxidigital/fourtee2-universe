@@ -146,7 +146,7 @@ function MusicPlayer() {
         <div className="suno-player__profile">
           <p className="suno-player__status"><i /> FIELD PLAYABLE</p>
           <h2 id="player-title">4[music]2<br /><span>on Suno.</span></h2>
-          <p>Choose a transmission from the official profile. Playback remains inside the field; the full archive is one signal away.</p>
+          <p>Choose a track below, then press play in the Suno player. The full 39-song official archive is one signal away.</p>
           <a href="https://suno.com/@4music2official" target="_blank" rel="noreferrer">OPEN OFFICIAL PROFILE <b>↗</b></a>
           <SaveSignalButton signal={{ signalType: "playlist", portal: "music", sourceId: "suno-4music2official", title: "4[music]2 official Suno profile", subtitle: "Suno / 39-song public transmission", href: "/music" }} />
           <div className="suno-player__queue" role="listbox" aria-label="Official 4 music 2 Suno track selection">
@@ -159,13 +159,17 @@ function MusicPlayer() {
         </div>
         <div className="suno-player__frame-wrap">
           <div className="suno-player__scan" aria-hidden="true"><i /><i /><i /><i /><i /></div>
-          <iframe
-            className="suno-player__frame"
-            title={`${activeTrack.title} by 4 music 2 on Suno`}
-            src={`https://suno.com/embed/${activeTrack.id}`}
-            allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
-            loading="lazy"
-          />
+          <div className="suno-player__playback">
+            <p>NOW PLAYING / OFFICIAL SUNO PROFILE</p>
+            <h3>{activeTrack.title}</h3>
+            <span>{activeTrack.detail}</span>
+            <audio className="suno-player__audio" controls preload="metadata">
+              <source src={`https://cdn1.suno.ai/${activeTrack.id}.mp3`} type="audio/mpeg" />
+              Your browser does not support audio playback.
+            </audio>
+            <p className="suno-player__playback-help">Press play to listen here, or open this track in Suno for lyrics and the full profile context.</p>
+            <a href={`https://suno.com/song/${activeTrack.id}`} target="_blank" rel="noreferrer">OPEN THIS TRACK IN SUNO <b>↗</b></a>
+          </div>
         </div>
       </div>
     </section>

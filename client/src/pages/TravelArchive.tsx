@@ -16,7 +16,8 @@ export default function TravelArchive() {
       <section className="travel-archive__hero">
         <p className="section-label">DESTINATION FIELD NOTES / PUBLISHED</p>
         <h1>Places worth<br /><span>holding onto.</span></h1>
-        <p>Published coordinates from the fourtee2travel field log. Each entry holds a route, an atmosphere, and a point of return.</p>
+        <p>Destination notes curated through fourtee2travel. Each entry gives you a route, an atmosphere, and a reason to go.</p>
+        <a className="platform-action" href="/travel">PLAN A TRIP <b>↗</b></a>
       </section>
       <section className="archive-records">
         {archive.isLoading && <p className="archive-state">SCANNING PUBLISHED COORDINATES</p>}
@@ -28,7 +29,7 @@ export default function TravelArchive() {
             <SaveSignalButton signal={{ signalType: "destination", portal: "travel", sourceId: `destination-${note.id}`, title: note.title, subtitle: `${note.city}, ${note.country}`, href: "/travel" }} />
           </article>
         ))}
-        {!archive.isLoading && !archive.data?.length && <div className="archive-state archive-state--empty"><p>ARCHIVE DORMANT</p><h2>Awaiting the first<br />published coordinate.</h2><span>ADMIN: OPEN ARCHIVE COMMAND TO CREATE THE FIRST FIELD NOTE.</span></div>}
+        {!archive.isLoading && !archive.data?.length && <div className="archive-state archive-state--empty"><p>DESTINATION ARCHIVE / COMING SOON</p><h2>The first destination<br />note is on its way.</h2><span>In the meantime, use fourtee2travel to begin planning your next trip.</span>{user?.role === "admin" ? <a className="platform-action" href="/archive/command">ADD A DESTINATION NOTE <b>↗</b></a> : <a className="platform-action" href="/travel">PLAN A TRIP <b>↗</b></a>}</div>}
       </section>
     </main>
   );

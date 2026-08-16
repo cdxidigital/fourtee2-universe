@@ -1,17 +1,8 @@
-import { useAuth } from "@/_core/hooks/useAuth";
-
 /**
  * fourtee2 Astral Editorial System: cosmic portal layout with Righteous-only
  * fourtee2 wordmarks, IBM Plex Mono interface labels, and cinematic image wells.
  */
 export default function Home() {
-  // The useAuth hook provides authentication state.
-  // To implement login/logout, call logout(), or start login from an event
-  // handler: onClick={() => startLogin()} (imported from "@/const"). Never call
-  // startLogin() during render (no href={startLogin()}) — it mints a one-time
-  // nonce cookie and must run only at the moment of navigation.
-  let { user, loading, error, isAuthenticated, logout } = useAuth();
-
   return (
     <div className="universe-shell">
       <header className="site-header" aria-label="Primary navigation">
@@ -19,11 +10,11 @@ export default function Home() {
           fourtee2
         </a>
         <nav className="site-nav" aria-label="Universe portals">
-          <a href="#signal">THE SIGNAL</a>
+          <a href="#signal">START HERE</a>
           <a className="nav-wordmark" href="/travel">fourtee2travel</a>
           <a href="/music">4[music]2</a>
           <a href="/you">4[you]2</a>
-          <a href="/board">BOARD</a>
+          <a href="/board">MY BOARD</a>
         </nav>
       </header>
 
@@ -34,7 +25,7 @@ export default function Home() {
           <div className="hero__copy">
             <p className="eyebrow">A BRAND UNIVERSE</p>
             <h1 id="hero-title" className="wordmark wordmark--hero">fourtee2</h1>
-            <p className="hero__statement">explore the world. feel the sound.</p>
+            <p className="hero__statement">travel. music. your signal.</p>
           </div>
         </section>
 
@@ -57,10 +48,10 @@ export default function Home() {
           </div>
           <div className="signal__copy">
             <p className="section-label">00 / THE SIGNAL</p>
-            <h2 id="signal-title">Choose a field.<br /><span>Enter the orbit.</span></h2>
+            <h2 id="signal-title">Plan a trip. Play a track.<br /><span>Save what matters.</span></h2>
             <div className="signal__body">
-              <p>Coordinates for places, frequencies and rituals. Keep only what changes the way you move through the day.</p>
-              <p>There is no central route. Find a signal. Follow it until the field begins to feel like yours.</p>
+              <p>fourtee2 brings together travel planning, official music transmissions, and personal rituals in one universe.</p>
+              <p>Start with the field that matters now, then save travel routes and music to your personal board.</p>
             </div>
           </div>
           <dl className="signal__metrics">
@@ -82,9 +73,9 @@ export default function Home() {
                 <div className="portal__wash" aria-hidden="true" />
                 <span className="portal__tag">TRAVEL</span>
                 <div className="portal__meta">
-                  <p>⌁ cheapest · value · luxury</p>
+                  <p>⌁ find flights & stays by price, value or comfort</p>
                   <h2 className="wordmark wordmark--portal">fourtee2travel</h2>
-                  <span className="portal__enter">ENTER PORTAL <b>→</b></span>
+                  <span className="portal__enter">PLAN A TRIP <b>→</b></span>
                 </div>
               </a>
             </article>
@@ -95,9 +86,9 @@ export default function Home() {
                 <div className="portal__wash" aria-hidden="true" />
                 <span className="portal__tag">MUSIC</span>
                 <div className="portal__meta">
-                  <p>♢ ai-curated suno playlists</p>
+                  <p>♢ play official 4[music]2 tracks from suno</p>
                   <h2 className="wordmark wordmark--portal">4[music]2</h2>
-                  <span className="portal__enter">ENTER PORTAL <b>→</b></span>
+                  <span className="portal__enter">PLAY MUSIC <b>→</b></span>
                 </div>
               </a>
             </article>
@@ -108,9 +99,9 @@ export default function Home() {
                 <div className="portal__wash" aria-hidden="true" />
                 <span className="portal__tag portal__tag--soon">○ COMING<br />SOON</span>
                 <div className="portal__meta">
-                  <p>♡ hair · skincare · preworkout</p>
+                  <p>♡ personal care · ritual · performance</p>
                   <h2 className="wordmark wordmark--portal">4[you]2</h2>
-                  <span className="portal__enter">ENTER PORTAL <b>→</b></span>
+                  <span className="portal__enter">EXPLORE 4[YOU]2 <b>→</b></span>
                 </div>
               </a>
             </article>
@@ -120,32 +111,32 @@ export default function Home() {
         <section className="universe-index" aria-labelledby="index-title">
           <div className="universe-index__intro">
             <p className="section-label">01 / UNIVERSE INDEX</p>
-            <h2 id="index-title">Select a field.<br />Begin the scan.</h2>
+            <h2 id="index-title">Choose what you<br />want to do.</h2>
           </div>
           <div className="index-list">
             <a id="travel-field" href="/travel" className="index-entry index-entry--travel">
               <span className="index-entry__number">01</span>
               <div>
                 <h3 className="wordmark">fourtee2travel</h3>
-                <p>Any destination. Your priority: cheapest, best value or luxury.</p>
+                <p>Search any destination. Choose the cheapest, best-value, or luxury route.</p>
               </div>
-              <span className="index-entry__state">OPEN <b>↗</b></span>
+              <span className="index-entry__state">PLAN A TRIP <b>↗</b></span>
             </a>
             <a id="music-field" href="/music" className="index-entry index-entry--music">
               <span className="index-entry__number">02</span>
               <div>
                 <h3 className="wordmark">4[music]2</h3>
-                <p>Frequencies for roads, rooms and returning memories.</p>
+                <p>Play official 4[music]2 tracks and save the transmissions you want to keep.</p>
               </div>
-              <span className="index-entry__state">OPEN <b>↗</b></span>
+              <span className="index-entry__state">PLAY MUSIC <b>↗</b></span>
             </a>
             <a id="you-field" href="/you" className="index-entry index-entry--you">
               <span className="index-entry__number">03</span>
               <div>
                 <h3 className="wordmark">4[you]2</h3>
-                <p>Rituals for the energy you carry forward.</p>
+                <p>Explore personal rituals for care, energy, and everyday performance.</p>
               </div>
-              <span className="index-entry__state">IN ORBIT <b>↗</b></span>
+              <span className="index-entry__state">EXPLORE <b>↗</b></span>
             </a>
           </div>
         </section>
@@ -162,11 +153,12 @@ export default function Home() {
       </main>
 
       <footer className="site-footer">
-        <a className="wordmark wordmark--footer" href="#top">fourtee2</a>
-        <nav aria-label="Footer navigation">
-          <a className="nav-wordmark" href="/travel">fourtee2travel</a>
-          <a href="/music">4[music]2</a>
-          <a href="/you">4[you]2</a>
+          <a className="wordmark wordmark--footer" href="#top">fourtee2</a>
+          <nav aria-label="Footer navigation">
+            <a className="nav-wordmark" href="/travel">fourtee2travel</a>
+            <a href="/music">4[music]2</a>
+            <a href="/you">4[you]2</a>
+            <a href="/board">MY BOARD</a>
         </nav>
         <p>© 2026 <span className="wordmark wordmark--copyright">fourtee2</span></p>
       </footer>

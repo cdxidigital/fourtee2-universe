@@ -25,6 +25,15 @@ export function SaveSignalButton({ signal, className = "" }: SaveSignalButtonPro
     },
   });
   const isSaved = signals.data?.some(item => item.signalType === signal.signalType && item.sourceId === signal.sourceId) ?? false;
+  const actionLabel = loading
+    ? "CHECKING SAVED ITEMS"
+    : toggle.isPending
+      ? isSaved ? "REMOVING FROM BOARD" : "SAVING TO BOARD"
+      : !isAuthenticated
+        ? "SIGN IN TO SAVE"
+        : isSaved
+          ? "SAVED TO MY BOARD"
+          : "SAVE TO MY BOARD";
 
   const handleSave = () => {
     if (!isAuthenticated) {
@@ -41,8 +50,9 @@ export function SaveSignalButton({ signal, className = "" }: SaveSignalButtonPro
       onClick={handleSave}
       disabled={loading || toggle.isPending}
       aria-pressed={isSaved}
+      aria-label={isAuthenticated ? `${isSaved ? "Remove" : "Save"} ${signal.title} ${isSaved ? "from" : "to"} your personal signal board` : `Sign in to save ${signal.title} to your personal signal board`}
     >
-      <span>{isSaved ? "SIGNAL SAVED" : "SAVE TO SIGNAL BOARD"}</span>
+      <span aria-live="polite">{actionLabel}</span>
       <b>{isSaved ? "●" : "+"}</b>
     </button>
   );

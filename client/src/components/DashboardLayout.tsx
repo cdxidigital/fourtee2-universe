@@ -28,9 +28,9 @@ import { DashboardLayoutSkeleton } from './DashboardLayoutSkeleton';
 import { Button } from "./ui/button";
 
 const menuItems = [
-  { icon: LayoutDashboard, label: "Signal Board", path: "/board" },
-  { icon: BookOpen, label: "Travel Archive", path: "/archive" },
-  { icon: MapPinned, label: "Archive Command", path: "/archive/command" },
+  { icon: LayoutDashboard, label: "My Saved Items", path: "/board" },
+  { icon: BookOpen, label: "Discover Destinations", path: "/archive" },
+  { icon: MapPinned, label: "Manage Destination Notes", path: "/archive/command" },
 ];
 
 const SIDEBAR_WIDTH_KEY = "sidebar-width";
@@ -66,7 +66,7 @@ export default function DashboardLayout({
               Sign in to continue
             </h1>
             <p className="text-sm text-muted-foreground text-center max-w-sm">
-              Access to this dashboard requires authentication. Continue to launch the login flow.
+              Sign in to view your saved routes and music, or to manage fourtee2travel destination notes.
             </p>
           </div>
           <Button
@@ -170,7 +170,7 @@ function DashboardLayoutContent({
               {!isCollapsed ? (
                 <div className="flex items-center gap-2 min-w-0">
                   <span className="font-semibold tracking-tight truncate">
-                    Navigation
+                    Your fourtee2 space
                   </span>
                 </div>
               ) : null}

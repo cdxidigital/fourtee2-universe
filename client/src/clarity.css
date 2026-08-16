@@ -1,0 +1,23 @@
+/* Final legibility layer for the clearer fourtee2 journeys. */
+.signal-board__hero > p:not(.section-label),
+.travel-archive__hero > p:not(.section-label) {
+  max-width: 560px;
+  margin: 2rem 0 0;
+  color: rgba(224, 227, 235, 0.62);
+  font: 400 0.95rem/1.7 "Manrope", sans-serif;
+}
+
+.travel-archive__hero .platform-action,
+.archive-state--empty .platform-action {
+  margin-top: 1.55rem;
+}
+
+.archive-state--empty .platform-action {
+  align-self: flex-start;
+}
+
+@media (max-width: 760px) {
+  .travel-archive__hero > p:not(.section-label) {
+    max-width: 32rem;
+  }
+}
