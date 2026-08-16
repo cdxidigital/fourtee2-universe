@@ -67,3 +67,12 @@
 - [x] Audit travel search, music playback, personal signal board, and destination archive journeys for clarity barriers.
 - [x] Simplify global navigation, calls to action, empty states, and feature guidance across core routes.
 - [x] Validate the revised experience for responsive usability and clear next actions before saving.
+
+## Live World Signal Hero
+
+- [x] Define the hero’s time, weather, and cultural-signal inputs and confirm a dependable data source.
+- [x] Build the adaptive hero visual, live signal readout, and visitor controls.
+- [x] Validate the live hero across device sizes, reduced-motion preferences, and data-unavailable states.
+
+- [x] Exercise the live-data unavailable state and verify the hero preserves a clear atmospheric fallback.
+- [x] Verify the reduced-motion live-hero treatment disables ambient drift while retaining the signal readout.

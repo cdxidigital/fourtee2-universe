@@ -8,6 +8,7 @@ import { ThemeProvider } from "./contexts/ThemeContext";
 import "./platform.css";
 import "./polish.css";
 import "./clarity.css";
+import "./live-hero.css";
 import ArchiveCommand from "./pages/ArchiveCommand";
 import Home from "./pages/Home";
 import { PortalPage } from "./pages/PortalPage";

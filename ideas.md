@@ -35,3 +35,7 @@ The supplied reference image is the non-negotiable visual specification for this
 The expanded system reads as an **archival navigation instrument**, not a conventional campaign page. Every large non-wordmark headline must be grounded by a monospaced index or field-note label, portal imagery must behave as asymmetric cinematic viewing wells with inky embedded wordmarks, and the voice must favor short navigational commands over explanatory brand prose.
 
 Each portal is a separate transmission rather than a reskinned template: **fourtee2travel** uses route-lines, terrain coordinates, and restrained city-light gold; **4[music]2** uses waveform logic, scan-line frequency, and night cobalt; **4[you]2** uses soft ritual geometry, violet material fields, and body-orbit forms.
+
+## Live World Signal Hero
+
+The hero becomes a quiet **world instrument** rather than a rotating promotional banner. Its celestial density, chromatic temperature, drift speed, and signal copy respond to the visitor’s local time plus a live weather observation for Perth—the fourtee2 origin point—using Open-Meteo’s current-weather response. Clear daylight leans cobalt and brighter; cloud or rain adds violet haze; night returns to deep indigo and dense stars; wind increases orbit drift. A compact, optional **World Signal** readout explains the active atmospheric condition, provides a manual Perth / local-time mode, and remains legible when live data is unavailable. The Righteous fourtee2 wordmark stays fixed and unanimated; reduced-motion preferences halt atmospheric drift.

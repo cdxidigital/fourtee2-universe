@@ -1,3 +1,5 @@
+import LiveHero from "@/components/LiveHero";
+
 /**
  * fourtee2 Astral Editorial System: cosmic portal layout with Righteous-only
  * fourtee2 wordmarks, IBM Plex Mono interface labels, and cinematic image wells.
@@ -19,15 +21,7 @@ export default function Home() {
       </header>
 
       <main id="top">
-        <section className="hero" aria-labelledby="hero-title">
-          <div className="hero__cosmos" aria-hidden="true" />
-          <div className="hero__grain" aria-hidden="true" />
-          <div className="hero__copy">
-            <p className="eyebrow">A BRAND UNIVERSE</p>
-            <h1 id="hero-title" className="wordmark wordmark--hero">fourtee2</h1>
-            <p className="hero__statement">travel. music. your signal.</p>
-          </div>
-        </section>
+        <LiveHero />
 
         <section className="transit" aria-label="Scroll to explore the universe">
           <a href="#portals" className="scroll-cue">
