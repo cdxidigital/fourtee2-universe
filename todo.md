@@ -76,3 +76,10 @@
 
 - [x] Exercise the live-data unavailable state and verify the hero preserves a clear atmospheric fallback.
 - [x] Verify the reduced-motion live-hero treatment disables ambient drift while retaining the signal readout.
+
+## Live Portal Overlays
+
+- [x] Define real-world signal mappings for travel route conditions, music listening modes, and 4[you]2 ritual atmosphere.
+- [x] Build distinct live overlays in the travel, music, and you portal experiences.
+- [x] Validate live overlay fallback, reduced-motion behavior, and responsive layouts before saving.
+- [x] Add and verify explicit reduced-motion behavior for the live portal overlay treatment.

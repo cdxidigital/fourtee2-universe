@@ -2,7 +2,9 @@ import { useState } from "react";
 import type { CSSProperties, FormEvent, KeyboardEvent } from "react";
 import "./portal-fallback.css";
 import "../suno-player.css";
+import "../portal-overlay.css";
 import { SaveSignalButton } from "@/components/SaveSignalButton";
+import LivePortalOverlay from "@/components/LivePortalOverlay";
 import { airportValue, searchAirports, type Airport } from "@/lib/airports";
 
 /**
@@ -356,6 +358,7 @@ export function PortalPage({ portal }: { portal: PortalKey }) {
             <h1 id="portal-title" className="wordmark portal-hero__wordmark">{data.wordmark}</h1>
             <p className="portal-hero__orbit">{data.orbit}</p>
           </div>
+          <LivePortalOverlay portal={portal} />
           <a className="portal-hero__scroll" href="#manifest"><span>READ FIELD NOTE</span><i aria-hidden="true" /></a>
           <p className="portal-hero__status">{data.status}</p>
         </section>
