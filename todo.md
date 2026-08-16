@@ -43,3 +43,9 @@
 - [x] Define the origin, destination, travel dates, and passenger selection behavior.
 - [x] Build an accessible trip-search interface integrated with route-priority selection.
 - [x] Validate the trip-search interface across desktop and mobile before saving.
+
+## Airport Autocomplete
+
+- [x] Define dependable airport search coverage and keyboard-autocomplete behavior.
+- [x] Implement airport suggestions for origin and destination fields with selectable route coordinates.
+- [x] Validate airport autocomplete and responsive usability before saving.

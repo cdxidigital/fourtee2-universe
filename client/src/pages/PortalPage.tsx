@@ -1,7 +1,8 @@
 import { useState } from "react";
-import type { CSSProperties, FormEvent } from "react";
+import type { CSSProperties, FormEvent, KeyboardEvent } from "react";
 import "./portal-fallback.css";
 import { SaveSignalButton } from "@/components/SaveSignalButton";
+import { airportValue, searchAirports, type Airport } from "@/lib/airports";
 
 /**
  * fourtee2 Astral Editorial System: dedicated archival portal pages use shared
@@ -219,6 +220,42 @@ const travelPriorities = [
   { id: "luxury", number: "03", label: "LUXURY", title: "The elevated route", description: "Put exceptional stays, thoughtful service and effortless movement at the centre of the travel field.", metric: "EXPERIENCE / FIRST" },
 ] as const;
 
+function AirportAutocomplete({ id, label, value, onChange, placeholder }: { id: string; label: string; value: string; onChange: (value: string) => void; placeholder: string }) {
+  const [isOpen, setIsOpen] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const matches = searchAirports(value);
+
+  const chooseAirport = (airport: Airport) => {
+    onChange(airportValue(airport));
+    setActiveIndex(0);
+    setIsOpen(false);
+  };
+
+  const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+    if (!isOpen && ["ArrowDown", "ArrowUp"].includes(event.key)) setIsOpen(true);
+    if (event.key === "ArrowDown") { event.preventDefault(); setActiveIndex((index) => Math.min(index + 1, Math.max(matches.length - 1, 0))); }
+    if (event.key === "ArrowUp") { event.preventDefault(); setActiveIndex((index) => Math.max(index - 1, 0)); }
+    if (event.key === "Enter" && isOpen && matches[activeIndex]) { event.preventDefault(); chooseAirport(matches[activeIndex]); }
+    if (event.key === "Escape") setIsOpen(false);
+  };
+
+  return (
+    <div className="travel-search__field travel-search__field--airport">
+      <label htmlFor={id}>{label}</label>
+      <input id={id} value={value} onChange={(event) => { onChange(event.target.value); setActiveIndex(0); setIsOpen(true); }} onFocus={() => setIsOpen(true)} onKeyDown={handleKeyDown} placeholder={placeholder} autoComplete="off" required role="combobox" aria-expanded={isOpen} aria-autocomplete="list" aria-controls={`${id}-suggestions`} aria-activedescendant={isOpen && matches[activeIndex] ? `${id}-${matches[activeIndex].code}` : undefined} />
+      {isOpen && (
+        <div className="airport-autocomplete" id={`${id}-suggestions`} role="listbox" aria-label={`${label} airport suggestions`}>
+          {matches.length > 0 ? matches.map((airport, index) => (
+            <button type="button" role="option" key={airport.code} id={`${id}-${airport.code}`} aria-selected={index === activeIndex} className={index === activeIndex ? "is-active" : ""} onMouseDown={(event) => { event.preventDefault(); chooseAirport(airport); }}>
+              <strong>{airport.city} <span>{airport.code}</span></strong><em>{airport.airport} / {airport.country}</em>
+            </button>
+          )) : <p>NO AIRPORT SIGNAL FOUND</p>}
+        </div>
+      )}
+    </div>
+  );
+}
+
 function TravelIntelligence() {
   const [priority, setPriority] = useState<(typeof travelPriorities)[number]["id"]>("value");
   const active = travelPriorities.find(item => item.id === priority) ?? travelPriorities[1];
@@ -244,8 +281,8 @@ function TravelIntelligence() {
       <form className="travel-search" onSubmit={handleSearch} aria-label="fourtee2travel route search">
         <div className="travel-search__heading"><p>ROUTE INPUT / REQUIRED</p><span>01 — 04</span></div>
         <div className="travel-search__fields">
-          <label><span>ORIGIN</span><input value={origin} onChange={(event) => setOrigin(event.target.value)} placeholder="City or airport" required autoComplete="off" /></label>
-          <label><span>DESTINATION</span><input value={destination} onChange={(event) => setDestination(event.target.value)} placeholder="Where to?" required autoComplete="off" /></label>
+          <AirportAutocomplete id="route-origin" label="ORIGIN" value={origin} onChange={setOrigin} placeholder="City or airport" />
+          <AirportAutocomplete id="route-destination" label="DESTINATION" value={destination} onChange={setDestination} placeholder="Where to?" />
           <label><span>DEPART</span><input type="date" value={departureDate} min="2026-08-15" onChange={(event) => setDepartureDate(event.target.value)} required /></label>
           <label><span>RETURN</span><input type="date" value={returnDate} min={departureDate} onChange={(event) => setReturnDate(event.target.value)} required /></label>
           <label><span>TRAVELLERS</span><select value={passengers} onChange={(event) => setPassengers(event.target.value)}><option>1 traveller</option><option>2 travellers</option><option>3 travellers</option><option>4 travellers</option><option>5+ travellers</option></select></label>
