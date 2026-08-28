@@ -83,3 +83,14 @@
 - [x] Build distinct live overlays in the travel, music, and you portal experiences.
 - [x] Validate live overlay fallback, reduced-motion behavior, and responsive layouts before saving.
 - [x] Add and verify explicit reduced-motion behavior for the live portal overlay treatment.
+
+## Provider-Neutral 4[music]2 Playlist
+
+- [x] Audit and remove visible provider references from the selected-transmission experience.
+- [x] Present the selected 4[music]2 playlist as a native in-page listening interface.
+- [x] Validate direct playback and responsive provider-neutral presentation before saving.
+
+- [x] Replace the browser-native player presentation with an accessible custom frequency-control instrument.
+
+- [x] Replace the static selected-track declaration with a verified account-backed playlist manifest while keeping provider branding hidden.
+- [x] Exercise play, pause, seek, and track switching in the custom frequency console before saving.

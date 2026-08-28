@@ -80,7 +80,7 @@ export default function Home() {
                 <div className="portal__wash" aria-hidden="true" />
                 <span className="portal__tag">MUSIC</span>
                 <div className="portal__meta">
-                  <p>♢ play official 4[music]2 tracks from suno</p>
+                  <p>♢ play selected 4[music]2 transmissions</p>
                   <h2 className="wordmark wordmark--portal">4[music]2</h2>
                   <span className="portal__enter">PLAY MUSIC <b>→</b></span>
                 </div>

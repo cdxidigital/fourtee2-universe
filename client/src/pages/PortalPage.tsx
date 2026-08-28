@@ -1,11 +1,14 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import type { CSSProperties, FormEvent, KeyboardEvent } from "react";
 import "./portal-fallback.css";
-import "../suno-player.css";
+import "../music-playlist.css";
+import "../playback-console.css";
 import "../portal-overlay.css";
 import { SaveSignalButton } from "@/components/SaveSignalButton";
 import LivePortalOverlay from "@/components/LivePortalOverlay";
 import { airportValue, searchAirports, type Airport } from "@/lib/airports";
+import { formatPlaybackTime } from "@/lib/playback";
+import { selectedPlaylist, type SelectedPlaylistTrack } from "@/lib/selectedPlaylist";
 
 /**
  * fourtee2 Astral Editorial System: dedicated archival portal pages use shared
@@ -127,50 +130,78 @@ const destinations: Destination[] = [
   { id: "lisbon", number: "03", name: "Lisbon", location: "LISBOA / PT", lat: 38.7223, lng: -9.1393, mapX: 42, mapY: 42, note: "Look for the hill with the late tables. Let the city decide when to descend." },
 ];
 
-const sunoTracks = [
-  { id: "4eab18ea-da9e-4b74-a6c6-dd927def1014", title: "Where Are You Now", detail: "v4.5+ / Pop Rock" },
-  { id: "794d294f-6692-46ba-b71a-d00378948932", title: "The Edge Of Eden", detail: "v5.5 / Modern Pop Rock" },
-  { id: "e2f07301-835a-423e-9316-fedb9c2be613", title: "Wild Garden", detail: "v5.5 / Pop-Rock" },
-  { id: "3ceddae2-bd13-4168-9d43-67325360251d", title: "Angel Lovers", detail: "v5.5 / EDM" },
-  { id: "0e598062-4ef5-4a03-8ef5-1e741f2412c2", title: "Holding out for Shannon", detail: "v5.5 / Eurodance" },
-] as const;
-
 function MusicPlayer() {
-  const [activeTrack, setActiveTrack] = useState<(typeof sunoTracks)[number]>(sunoTracks[0]);
+  const [activeTrack, setActiveTrack] = useState<SelectedPlaylistTrack>(selectedPlaylist.tracks[0]);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
+  const audioRef = useRef<HTMLAudioElement>(null);
+
+  const selectTrack = (track: SelectedPlaylistTrack) => {
+    setIsPlaying(false);
+    setCurrentTime(0);
+    setDuration(0);
+    setActiveTrack(track);
+  };
+
+  const togglePlayback = async () => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    if (audio.paused) {
+      try {
+        await audio.play();
+        setIsPlaying(true);
+      } catch {
+        setIsPlaying(false);
+      }
+    } else {
+      audio.pause();
+      setIsPlaying(false);
+    }
+  };
+
+  const seek = (value: number) => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    audio.currentTime = value;
+    setCurrentTime(value);
+  };
 
   return (
-    <section className="suno-player" aria-labelledby="player-title">
-      <div className="suno-player__header">
-        <p className="section-label">OFFICIAL SUNO PROFILE / 4MUSIC2OFFICIAL</p>
-        <p>39 SONGS / PUBLIC TRANSMISSION</p>
+    <section className="music-playlist" aria-labelledby="player-title">
+      <div className="music-playlist__header">
+        <p className="section-label">4[MUSIC]2 / SELECTED PLAYLIST</p>
+        <p>{selectedPlaylist.trackCount} TRANSMISSIONS / PLAYABLE</p>
       </div>
-      <div className="suno-player__deck">
-        <div className="suno-player__profile">
-          <p className="suno-player__status"><i /> FIELD PLAYABLE</p>
-          <h2 id="player-title">4[music]2<br /><span>on Suno.</span></h2>
-          <p>Choose a track below, then press play in the Suno player. The full 39-song official archive is one signal away.</p>
-          <a href="https://suno.com/@4music2official" target="_blank" rel="noreferrer">OPEN OFFICIAL PROFILE <b>↗</b></a>
-          <SaveSignalButton signal={{ signalType: "playlist", portal: "music", sourceId: "suno-4music2official", title: "4[music]2 official Suno profile", subtitle: "Suno / 39-song public transmission", href: "/music" }} />
-          <div className="suno-player__queue" role="listbox" aria-label="Official 4 music 2 Suno track selection">
-            {sunoTracks.map((track, index) => (
-              <button key={track.id} type="button" role="option" aria-selected={activeTrack.id === track.id} className={activeTrack.id === track.id ? "is-active" : ""} onClick={() => setActiveTrack(track)}>
+      <div className="music-playlist__deck">
+        <div className="music-playlist__profile">
+          <p className="music-playlist__status"><i /> FIELD PLAYABLE</p>
+          <h2 id="player-title">4[music]2<br /><span>Selected signal.</span></h2>
+          <p>{selectedPlaylist.title}. Select a transmission, then play it directly inside the frequency field.</p>
+          <SaveSignalButton signal={{ signalType: "playlist", portal: "music", sourceId: selectedPlaylist.id, title: selectedPlaylist.title, subtitle: "Selected transmissions / frequency field", href: "/music" }} />
+          <div className="music-playlist__queue" role="listbox" aria-label="4 music 2 selected playlist track selection">
+            {selectedPlaylist.tracks.map((track, index) => (
+              <button key={track.id} type="button" role="option" aria-selected={activeTrack.id === track.id} className={activeTrack.id === track.id ? "is-active" : ""} onClick={() => selectTrack(track)}>
                 <span>{String(index + 1).padStart(2, "0")}</span><strong>{track.title}</strong><em>{track.detail}</em><i aria-hidden="true">↗</i>
               </button>
             ))}
           </div>
         </div>
-        <div className="suno-player__frame-wrap">
-          <div className="suno-player__scan" aria-hidden="true"><i /><i /><i /><i /><i /></div>
-          <div className="suno-player__playback">
-            <p>NOW PLAYING / OFFICIAL SUNO PROFILE</p>
+        <div className="music-playlist__frame-wrap">
+          <div className="music-playlist__scan" aria-hidden="true"><i /><i /><i /><i /><i /></div>
+          <div className="music-playlist__playback">
+            <p>NOW PLAYING / SELECTED PLAYLIST</p>
             <h3>{activeTrack.title}</h3>
             <span>{activeTrack.detail}</span>
-            <audio className="suno-player__audio" controls preload="metadata">
+            <audio ref={audioRef} className="music-playlist__audio" preload="metadata" aria-label={`Play ${activeTrack.title}`} key={activeTrack.id} onPlay={() => setIsPlaying(true)} onPause={() => setIsPlaying(false)} onLoadedMetadata={(event) => setDuration(event.currentTarget.duration)} onTimeUpdate={(event) => setCurrentTime(event.currentTarget.currentTime)} onEnded={() => setIsPlaying(false)}>
               <source src={`https://cdn1.suno.ai/${activeTrack.id}.mp3`} type="audio/mpeg" />
               Your browser does not support audio playback.
             </audio>
-            <p className="suno-player__playback-help">Press play to listen here, or open this track in Suno for lyrics and the full profile context.</p>
-            <a href={`https://suno.com/song/${activeTrack.id}`} target="_blank" rel="noreferrer">OPEN THIS TRACK IN SUNO <b>↗</b></a>
+            <div className={isPlaying ? "music-playlist__controls is-playing" : "music-playlist__controls"}>
+              <div className="music-playlist__control-top"><button className="music-playlist__play-toggle" type="button" onClick={() => void togglePlayback()}>{isPlaying ? "PAUSE SIGNAL" : "PLAY SIGNAL"}</button><div className="music-playlist__bars" aria-hidden="true"><i /><i /><i /><i /><i /><i /><i /></div><span>{isPlaying ? "FREQUENCY ACTIVE" : "FREQUENCY READY"}</span></div>
+              <label className="music-playlist__timeline"><span>{formatPlaybackTime(currentTime)}</span><input type="range" min="0" max={duration || 1} step="0.1" value={Math.min(currentTime, duration || 1)} onChange={(event) => seek(Number(event.target.value))} aria-label={`Seek through ${activeTrack.title}`} /><span>{formatPlaybackTime(duration)}</span></label>
+            </div>
+            <p className="music-playlist__playback-help">Enter the sequence. Switch transmissions when the field changes.</p>
           </div>
         </div>
       </div>

@@ -1,0 +1,15 @@
+.music-playlist__queue {
+  max-height: 30rem;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding-right: .35rem;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(161, 139, 242, .5) transparent;
+}
+
+.music-playlist__queue::-webkit-scrollbar { width: 4px; }
+.music-playlist__queue::-webkit-scrollbar-thumb { background: rgba(161, 139, 242, .48); }
+
+@media (max-width: 760px) {
+  .music-playlist__queue { max-height: 26rem; }
+}

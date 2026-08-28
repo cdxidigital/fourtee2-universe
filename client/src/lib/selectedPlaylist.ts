@@ -1,0 +1,31 @@
+export const selectedPlaylist = {
+  id: "b5889cb5-5682-4bb9-bf1b-407891ea5df9",
+  title: "The Best of 4[music]2",
+  trackCount: 22,
+  tracks: [
+    { id: "e40c616b-623c-4531-b524-3ebf9f170224", title: "STILL HERE.", detail: "v5 / Ethereal Pop" },
+    { id: "64fdc961-6984-4ba8-affc-ebabd3746c56", title: "Under Pressure", detail: "v5 / Pop" },
+    { id: "952e60e2-16a7-4d17-8878-95bcd4b01f3c", title: "LIGHTER", detail: "v5 / Ethereal Pop" },
+    { id: "d94f8cd0-7ff3-4ae0-bc65-271bb04763bd", title: "Insheepnia {Red Sky Mix)", detail: "v5 / Electronic" },
+    { id: "731d3240-467b-4610-9a89-47bcf70fcdc6", title: "You're Not The Problem (Rewrite 2025)", detail: "v5 / Electronic Dance" },
+    { id: "88714ae4-e628-4fa9-8bfa-6cf290cc6e75", title: "A.D.I.D.A.S in My Head", detail: "v5 / Nu-Metal Pop" },
+    { id: "dd98fc48-88fa-4959-9e93-18b52257f1ec", title: "the rush. (Adam edition)", detail: "v5 / Industrial-Rock" },
+    { id: "f92d7715-47c6-46d0-9d6d-dd5510ceb5fd", title: "Cant Get You Off My Leash (fr3ak)", detail: "v4.5 / Disco Trance" },
+    { id: "5a67fcef-1511-4e23-a3d9-6a91d0b56e67", title: "Pressure Room", detail: "v5 / Industrial" },
+    { id: "311dd8ab-41d9-4426-9e39-72e84e53665f", title: "We Rise Like Giants", detail: "v5 / Arena-Pop" },
+    { id: "19c9806a-d180-4f2a-bfbb-09ac9cf9959c", title: "The Legend of Matty (Kardinya's Finest)", detail: "v4.5 / A Dark" },
+    { id: "2704810c-3527-42ba-a6b2-f94e6aee5b2f", title: "the rush. (adam & lillth)", detail: "v4.5 / Mashup" },
+    { id: "11304099-b932-4357-916e-d08fb47977d3", title: "The Edge of Eden (Live Performance)", detail: "v5.5 / Modern Pop-Rock" },
+    { id: "f2b47125-0a82-4125-9dcd-d50de6121898", title: "Edge of Eden (live extended encore)", detail: "v5.5 / Pop-Rock" },
+    { id: "7ec3fe57-8849-4ce4-b1f0-2208c68e4341", title: "Red Light Cam", detail: "v5.5 / Cinematic Electro-Pop" },
+    { id: "31c34b01-2d75-44b1-a0f4-6bf86f0f3cc4", title: "The Longest Lie — Live in Concert", detail: "v5.5 / Live Arena Pop" },
+    { id: "0e598062-4ef5-4a03-8ef5-1e741f2412c2", title: "Holding out for Shannon", detail: "v5.5 / Eurodance" },
+    { id: "e2f07301-835a-423e-9316-fedb9c2be613", title: "Wild Garden (Live Performance)", detail: "v5.5 / Pop-Rock" },
+    { id: "4eab18ea-da9e-4b74-a6c6-dd927def1014", title: "Where Are You Now", detail: "v4.5 / Pop Rock" },
+    { id: "0e4c41f3-18b6-4313-8e45-b6206f332cfb", title: "Where Are You Now (Remastered)", detail: "v5.5 / Pop Rock" },
+    { id: "805154ee-3d76-4fc5-855d-e190b244fd00", title: "Pressure Room (Global Queer Club 2026 Mix)", detail: "v5.5 / House" },
+    { id: "ae30acf0-3162-4cdd-9496-eb77ab5d695a", title: "Shattered Truths (Remastered)", detail: "v5.5 / Indie" },
+  ],
+} as const;
+
+export type SelectedPlaylistTrack = (typeof selectedPlaylist.tracks)[number];
