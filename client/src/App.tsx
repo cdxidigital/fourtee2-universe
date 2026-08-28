@@ -10,11 +10,13 @@ import "./polish.css";
 import "./clarity.css";
 import "./live-hero.css";
 import "./playlist-queue.css";
+import "./galaxy.css";
 import ArchiveCommand from "./pages/ArchiveCommand";
 import Home from "./pages/Home";
 import { PortalPage } from "./pages/PortalPage";
 import SignalBoard from "./pages/SignalBoard";
 import TravelArchive from "./pages/TravelArchive";
+import WorldPage from "./pages/WorldPage";
 
 /**
  * fourtee2 Astral Editorial System: Event Horizon Black, cosmic photography,
@@ -33,6 +35,7 @@ function Router() {
           <Route path={"/board"} component={SignalBoard} />
           <Route path={"/archive/command"} component={ArchiveCommand} />
           <Route path={"/archive"} component={TravelArchive} />
+          <Route path={"/worlds/:slug"} component={WorldPage} />
           <Route path={"/404"} component={NotFound} />
           <Route component={NotFound} />
         </Switch>

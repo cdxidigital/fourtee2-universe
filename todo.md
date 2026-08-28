@@ -94,3 +94,14 @@
 
 - [x] Replace the static selected-track declaration with a verified account-backed playlist manifest while keeping provider branding hidden.
 - [x] Exercise play, pause, seek, and track switching in the custom frequency console before saving.
+
+## fourtee2.haus Galactic Map
+
+- [x] Translate the supplied fourtee2.haus homepage blueprint into a data-driven celestial taxonomy, world inventory, and interaction specification.
+- [x] Build the arrival sequence and explorable galaxy map with pan, zoom, world selection, and recenter controls.
+- [x] Add world-inspection panels, lightweight MAP/WORLDS/SEARCH/ABOUT controls, and entry points into the existing portal routes.
+- [x] Validate desktop and touch exploration, reduced-motion behavior, and responsive readability before saving.
+- [x] Reduce mobile galaxy object density while retaining standard-list access to the complete universe inventory.
+
+- [x] Exercise touch-style map pan, zoom, world selection, and recenter behaviour end to end.
+- [x] Validate reduced-motion behaviour keeps map navigation and overlays usable while suppressing non-essential motion.

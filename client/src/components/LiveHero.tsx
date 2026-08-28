@@ -45,7 +45,7 @@ function formatClock(date: Date | null, isOrigin: boolean) {
   }).format(value);
 }
 
-export default function LiveHero() {
+export default function LiveHero({ onEnter }: { onEnter?: () => void }) {
   const [signal, setSignal] = useState<WorldSignal>(fallbackSignal);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [message, setMessage] = useState("TUNING TO PERTH ATMOSPHERE");
@@ -124,7 +124,8 @@ export default function LiveHero() {
       <div className="hero__copy">
         <p className="eyebrow">A BRAND UNIVERSE / LIVE WORLD SIGNAL</p>
         <h1 id="hero-title" className="wordmark wordmark--hero">fourtee2</h1>
-        <p className="hero__statement">travel. music. your signal.</p>
+        <p className="hero__statement">A universe of brands, ideas,<br />technology &amp; experiences.</p>
+        <button type="button" className="hero__enter" onClick={onEnter}>ENTER THE UNIVERSE <b>→</b></button>
       </div>
       <aside className="hero__world-signal" aria-live="polite" aria-label="Live world signal">
         <div className="hero__world-heading"><span>WORLD SIGNAL</span><strong>{describeVibe(signal.vibe)}</strong></div>
