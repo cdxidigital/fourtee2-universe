@@ -105,3 +105,10 @@
 
 - [x] Exercise touch-style map pan, zoom, world selection, and recenter behaviour end to end.
 - [x] Validate reduced-motion behaviour keeps map navigation and overlays usable while suppressing non-essential motion.
+
+## Guided Constellation and World Material
+
+- [ ] Define a first-visit constellation tour, fourteen world field notes, asset direction, and optional ambient soundscape system.
+- [ ] Create owned visual materials and original ambient audio for the world transmissions.
+- [ ] Build the guided tour, rich world field notes, optional soundscape controls, and subtle celestial hover interactions.
+- [ ] Validate the enriched galaxy across desktop and touch layouts, audio-consent states, and reduced-motion preferences.

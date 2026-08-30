@@ -988,3 +988,378 @@ html {
 .travel-notes { position: relative; padding: clamp(7rem, 12vw, 12rem) max(5vw, 1.4rem); overflow: hidden; border-block: 1px solid rgba(226,184,105,0.16); background: radial-gradient(circle at 76% 60%, rgba(186,139,66,0.13), transparent 23rem), #060504; }.travel-notes::before { position: absolute; top: 2.1rem; left: max(5vw, 1.4rem); right: max(5vw, 1.4rem); height: 1px; background: linear-gradient(90deg, rgba(229,188,112,0.2), transparent 28%, transparent 72%, rgba(229,188,112,0.14)); content: ""; }.travel-notes__header { display: grid; grid-template-columns: minmax(9rem, 0.45fr) minmax(0, 1fr) minmax(185px, 0.34fr); gap: 2rem; max-width: 1100px; margin: 0 auto clamp(4rem, 7vw, 7rem); }.travel-notes__header .section-label { margin: 0; padding-top: 0.7rem; }.travel-notes__header h2 { margin: 0; color: #eff0ed; font-family: "Manrope", ui-sans-serif, system-ui, sans-serif; font-size: clamp(2.5rem, 5vw, 5.4rem); font-weight: 400; letter-spacing: -0.07em; line-height: 0.88; }.travel-notes__header > p:last-child { max-width: 225px; margin: 0; color: rgba(226,228,220,0.48); font-family: "Manrope", ui-sans-serif, system-ui, sans-serif; font-size: 0.82rem; line-height: 1.6; }.travel-notes__interface { display: grid; grid-template-columns: minmax(180px, 0.37fr) minmax(0, 1fr) minmax(190px, 0.42fr); max-width: 1100px; margin: 0 auto; border-top: 1px solid rgba(229,188,112,0.27); border-bottom: 1px solid rgba(229,188,112,0.27); }.travel-notes__list { border-left: 1px solid rgba(229,188,112,0.27); }.travel-notes__list button { position: relative; display: grid; width: 100%; min-height: 148px; grid-template-columns: 2.4rem minmax(0,1fr); grid-template-rows: auto auto; gap: 0.35rem 0.5rem; border: 0; border-right: 1px solid rgba(229,188,112,0.27); border-bottom: 1px solid rgba(229,188,112,0.18); padding: 1.4rem 1rem; color: rgba(230,232,226,0.64); background: transparent; text-align: left; transition: background 180ms cubic-bezier(0.23,1,0.32,1), color 180ms cubic-bezier(0.23,1,0.32,1); }.travel-notes__list button:last-child { border-bottom: 0; }.travel-notes__list button:hover, .travel-notes__list button.is-active { color: #f4ead5; background: linear-gradient(135deg, rgba(218,173,94,0.16), transparent 74%); }.travel-notes__list button:focus-visible { outline: 1px solid #e1b96e; outline-offset: -3px; }.travel-notes__list span { grid-row: span 2; color: rgba(226,185,109,0.53); font-size: 0.54rem; letter-spacing: 0.12em; }.travel-notes__list strong { color: inherit; font-family: "Manrope", ui-sans-serif, system-ui, sans-serif; font-size: 1.1rem; font-weight: 400; letter-spacing: -0.04em; }.travel-notes__list em { color: rgba(229,232,225,0.38); font-size: 0.5rem; font-style: normal; letter-spacing: 0.12em; }.travel-notes__list i { position: absolute; right: 1rem; bottom: 1rem; color: rgba(229,188,112,0.75); font-size: 0.85rem; font-style: normal; }.travel-notes__map-wrap { position: relative; min-height: 445px; border-right: 1px solid rgba(229,188,112,0.27); background: #090907; }.travel-notes__map { width: 100%; height: 100% !important; min-height: 445px; filter: saturate(0.78) contrast(1.12); }.travel-notes__map-index { position: absolute; z-index: 1; top: 1rem; left: 1rem; border: 1px solid rgba(231,195,124,0.42); padding: 0.32rem 0.5rem; color: rgba(244,224,186,0.72); background: rgba(6,6,4,0.72); font-size: 0.48rem; letter-spacing: 0.14em; pointer-events: none; }.travel-notes__active-note { min-height: 445px; padding: 1.8rem clamp(1.2rem, 2vw, 2rem); background: linear-gradient(160deg, rgba(198,151,76,0.12), transparent 52%); }.travel-notes__active-note p { margin: 0; color: rgba(231,191,117,0.48); font-size: 0.5rem; letter-spacing: 0.15em; }.travel-notes__active-note h3 { margin: clamp(4rem, 8vw, 8rem) 0 0.8rem; color: #f0ece3; font-family: "Manrope", ui-sans-serif, system-ui, sans-serif; font-size: clamp(1.8rem, 3vw, 3rem); font-weight: 400; letter-spacing: -0.06em; }.travel-notes__active-note > span { color: rgba(238,220,187,0.54); font-size: 0.5rem; letter-spacing: 0.12em; }.travel-notes__active-note blockquote { margin: 2.4rem 0 0; color: rgba(234,230,220,0.58); font-family: "Manrope", ui-sans-serif, system-ui, sans-serif; font-size: 0.84rem; line-height: 1.65; }
 
 @media (max-width: 760px) { .music-player { padding: 6rem 1.4rem; }.music-player__header { display: block; }.music-player__header > p:last-child { margin-top: 0.8rem; font-size: 0.43rem; }.music-player__deck { grid-template-columns: 1fr; gap: 2.7rem; }.music-player__frame-wrap, .music-player__frame { min-height: 280px; height: 280px; }.travel-notes { padding: 6rem 1.4rem; }.travel-notes__header { grid-template-columns: 1fr; gap: 1.2rem; }.travel-notes__header .section-label { padding-top: 0; }.travel-notes__interface { grid-template-columns: 1fr; }.travel-notes__list { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); border-right: 1px solid rgba(229,188,112,0.27); }.travel-notes__list button { min-height: 128px; grid-template-columns: 1fr; grid-template-rows: auto auto auto; padding: 1rem 0.75rem; border-right: 1px solid rgba(229,188,112,0.21); border-bottom: 0; }.travel-notes__list button:last-child { border-right: 0; }.travel-notes__list span { grid-row: auto; }.travel-notes__list i { right: 0.65rem; bottom: 0.65rem; }.travel-notes__map-wrap, .travel-notes__map { min-height: 340px; }.travel-notes__active-note { min-height: 0; padding: 2rem 1.2rem 2.4rem; border-top: 1px solid rgba(229,188,112,0.27); }.travel-notes__active-note h3 { margin-top: 2.8rem; } }
+
+/* World View: Archival Editorial Layout */
+.world-view {
+  min-height: 100vh;
+  background: #030405;
+  color: #d8d9dd;
+  display: flex;
+  flex-direction: column;
+}
+
+.world-view__rail {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2.15vw;
+  background: rgba(3, 4, 5, 0.96);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.045);
+}
+
+.world-view__path {
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.world-view__actions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.audio-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+  transition: color 0.2s;
+}
+
+.audio-toggle:hover {
+  color: #fff;
+}
+
+.back-link {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+}
+
+.world-view__hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.world-view__visual {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.world-view__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.8) brightness(0.6);
+}
+
+.world-view__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, #030405 0%, rgba(3, 4, 5, 0.8) 30%, transparent 70%);
+}
+
+.world-view__content {
+  position: relative;
+  z-index: 2;
+  width: min(100% - 4rem, 1200px);
+  margin: 0 auto;
+  padding: 8rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+.world-view__header {
+  max-width: 600px;
+}
+
+.world-view__meta {
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  color: var(--world-accent);
+  margin-bottom: 1.5rem;
+}
+
+.world-view__hero h1 {
+  font-size: clamp(3rem, 8vw, 7rem);
+  line-height: 0.9;
+  margin: 0;
+}
+
+.world-view__editorial {
+  max-width: 520px;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.world-view__observation {
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  line-height: 1.4;
+  color: #fff;
+  border-left: 1px solid var(--world-accent);
+  padding-left: 2rem;
+  margin: 0;
+}
+
+.world-view__field-note {
+  font-size: 13px;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 0.02em;
+}
+
+.world-view__scroll {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: rgba(255, 255, 255, 0.3);
+  text-decoration: none;
+  transition: color 0.2s;
+  align-self: flex-start;
+}
+
+.world-view__scroll:hover {
+  color: #fff;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  margin-bottom: 3rem;
+}
+
+.section-header p {
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.section-header span {
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  color: var(--world-accent);
+}
+
+.world-view__systems,
+.world-view__connections {
+  width: min(100% - 4rem, 1200px);
+  margin: 0 auto;
+  padding: 6rem 0;
+}
+
+.systems-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.system-card {
+  padding: 2.5rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  transition: border-color 0.3s, background 0.3s;
+}
+
+.system-card:hover {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: var(--world-accent);
+}
+
+.system-card__index {
+  display: block;
+  font-size: 10px;
+  color: var(--world-accent);
+  margin-bottom: 1.5rem;
+}
+
+.system-card__title {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: #fff;
+}
+
+.system-card__status {
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.connections-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.connection-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 1.25rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+}
+
+.connection-item__id {
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.connection-item__type {
+  color: var(--world-accent);
+  font-size: 8px;
+  padding: 0.1rem 0.3rem;
+  border: 1px solid var(--world-accent);
+}
+
+.connection-item--none {
+  opacity: 0.4;
+  font-style: italic;
+  border: none;
+  background: none;
+}
+
+.world-view__footer {
+  padding: 8rem 2.15vw 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.045);
+}
+
+.world-view__footer p {
+  font-size: 9px;
+  letter-spacing: 0.4em;
+  color: rgba(255, 255, 255, 0.2);
+}
+
+/* Constellation Tour */
+.tour-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(3, 4, 5, 0.85);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.tour-card {
+  width: min(100%, 480px);
+  background: #07080c;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  position: relative;
+}
+
+.tour-card__step {
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.tour-card h2 {
+  font-size: 2rem;
+  line-height: 1.1;
+  margin: 0;
+  color: #fff;
+}
+
+.tour-card p {
+  font-size: 13px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.tour-card__actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.tour-card__btn {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 0.75rem 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.2s;
+}
+
+.tour-card__btn:hover {
+  background: #fff;
+  color: #000;
+  border-color: #fff;
+}
+
+.tour-card__btn--primary {
+  background: #fff;
+  color: #000;
+  border-color: #fff;
+}
+
+.tour-card__skip {
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.3);
+  text-decoration: underline;
+  background: none;
+  border: none;
+}
+
+/* Constellation Logic: Visual grouping of celestial bodies by category */
+.galaxy-explorer.show-constellations .galaxy-planet:not(.is-selected) {
+  opacity: 0.25;
+}
+
+.galaxy-explorer.show-constellations .galaxy-planet.is-cat-travel,
+.galaxy-explorer.show-constellations .galaxy-planet.is-cat-media,
+.galaxy-explorer.show-constellations .galaxy-planet.is-cat-personal,
+.galaxy-explorer.show-constellations .galaxy-planet.is-cat-creative,
+.galaxy-explorer.show-constellations .galaxy-planet.is-cat-technology,
+.galaxy-explorer.show-constellations .galaxy-planet.is-cat-research,
+.galaxy-explorer.show-constellations .galaxy-planet.is-cat-experimental {
+  opacity: 1;
+  filter: drop-shadow(0 0 10px var(--world-color));
+}
+
+.galaxy-explorer.show-constellations .galaxy-planet__orbital {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.galaxy-explorer.is-high-contrast .galaxy-planet__label {
+  opacity: 1;
+  text-shadow: 0 0 4px #000;
+}

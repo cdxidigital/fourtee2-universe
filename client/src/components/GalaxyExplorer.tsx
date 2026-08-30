@@ -29,7 +29,7 @@ function Planet({ world, selected, dimmed, onSelect }: { world: GalaxyWorld; sel
   return (
     <button
       type="button"
-      className={`galaxy-planet galaxy-planet--${world.type} galaxy-planet--${world.id}${selected ? " is-selected" : ""}${dimmed ? " is-dimmed" : ""}`}
+      className={`galaxy-planet galaxy-planet--${world.type} galaxy-planet--${world.id}${selected ? " is-selected" : ""}${dimmed ? " is-dimmed" : ""}${world.category ? ` is-cat-${world.category}` : ""}`}
       style={visualStyle}
       onClick={event => { event.stopPropagation(); onSelect(world); }}
       onFocus={() => onSelect(world)}
@@ -53,7 +53,44 @@ export default function GalaxyExplorer({ navIntent, onIntentHandled }: GalaxyExp
   const [showConstellations, setShowConstellations] = useState(false);
   const [highContrast, setHighContrast] = useState(false);
   const [departingWorld, setDepartingWorld] = useState<string | null>(null);
+  const [tourStep, setTourStep] = useState<number | null>(null);
   const pointerRef = useRef<Map<number, { x: number; y: number }>>(new Map());
+
+  useEffect(() => {
+    const hasSeenTour = localStorage.getItem("fourtee2-tour-seen");
+    if (!hasSeenTour) {
+      const timer = window.setTimeout(() => setTourStep(0), 1500);
+      return () => window.clearTimeout(timer);
+    }
+  }, []);
+
+  const completeTour = () => {
+    setTourStep(null);
+    localStorage.setItem("fourtee2-tour-seen", "true");
+  };
+
+  const tourSteps = [
+    {
+      title: "ARRIVAL RITUAL",
+      content: "You have entered the fourtee2 universe. A core origin surrounded by a growing ecosystem of ideas and systems.",
+      action: "NEXT SIGNAL",
+    },
+    {
+      title: "THE 14 WORLDS",
+      content: "Fourteen celestial bodies represent our active ventures, products, and research labs. Each one is a distinct field of intelligence.",
+      action: "CONTINUE",
+    },
+    {
+      title: "SEMANTIC INSPECTION",
+      content: "Select any world to inspect its current mission, field notes, and orbital systems. Every signal carries meaning.",
+      action: "UNDERSTOOD",
+    },
+    {
+      title: "CONSTELLATION VIEWS",
+      content: "Use the controls to reveal constellations—grouping worlds by their category: Travel, Creative, Research, and Technology.",
+      action: "BEGIN EXPLORATION",
+    },
+  ];
   const dragRef = useRef<{ x: number; y: number; originX: number; originY: number } | null>(null);
   const pinchRef = useRef<{ distance: number; zoom: number } | null>(null);
   const searchRef = useRef<HTMLInputElement>(null);
@@ -153,7 +190,7 @@ export default function GalaxyExplorer({ navIntent, onIntentHandled }: GalaxyExp
   const worldNameClass = (world: GalaxyWorld) => world.name.includes("fourtee2") ? "wordmark" : undefined;
 
   return (
-    <section id="galaxy" className={`galaxy-explorer${isSearchOpen ? " is-searching" : ""}${highContrast ? " is-high-contrast" : ""}${departingWorld ? " is-departing" : ""}`} aria-label="fourtee2 galaxy map">
+    <section id="galaxy" className={`galaxy-explorer${isSearchOpen ? " is-searching" : ""}${highContrast ? " is-high-contrast" : ""}${departingWorld ? " is-departing" : ""}${showConstellations ? " show-constellations" : ""}`} aria-label="fourtee2 galaxy map">
       <div className="galaxy-explorer__topline"><span>GALAXY // 001</span><span>ONE CORE / {galaxyWorlds.length} WORLDS / {galaxyRelationships.length} LINKS</span></div>
       <div className="galaxy-map" onWheel={onWheel} onPointerDown={onPointerDown} onPointerMove={onPointerMove} onPointerUp={onPointerEnd} onPointerCancel={onPointerEnd}>
         <div className="galaxy-map__noise" aria-hidden="true" />
@@ -192,6 +229,25 @@ export default function GalaxyExplorer({ navIntent, onIntentHandled }: GalaxyExp
       {isListOpen && <section className="galaxy-overlay galaxy-overlay--list" role="dialog" aria-modal="true" aria-label="All worlds"><button className="galaxy-overlay__close" type="button" onClick={() => setIsListOpen(false)}>CLOSE ×</button><p>ALL WORLDS / ACCESSIBLE LIST</p><div>{galaxyWorlds.map((world, index) => <a key={world.id} href={world.url} onFocus={() => selectWorld(world)}><b>{String(index + 1).padStart(2, "0")}</b><span className={worldNameClass(world)}>{world.name}</span><em>{world.type} / {world.status}</em></a>)}</div></section>}
 
       {isAboutOpen && <section className="galaxy-overlay galaxy-overlay--about" role="dialog" aria-modal="true" aria-label="About fourtee2"><button className="galaxy-overlay__close" type="button" onClick={() => setIsAboutOpen(false)}>CLOSE ×</button><p>ABOUT / TRANSMISSION</p><h2>ONE CORE.<br />MANY WORLDS.</h2><blockquote>fourtee2 is a growing ecosystem of businesses, products, technologies, experiments and ideas.</blockquote><div><span><b>CREATE</b>We build new things.</span><span><b>CONNECT</b>Our worlds influence one another.</span><span><b>EXPLORE</b>We follow ideas wherever they lead.</span></div></section>}
+
+      {tourStep !== null && (
+        <div className="tour-overlay">
+          <div className="tour-card">
+            <span className="tour-card__step">SIGNAL {tourStep + 1} / {tourSteps.length}</span>
+            <h2 className="wordmark">{tourSteps[tourStep].title}</h2>
+            <p>{tourSteps[tourStep].content}</p>
+            <div className="tour-card__actions">
+              <button className="tour-card__skip" onClick={completeTour}>SKIP TOUR</button>
+              <button 
+                className="tour-card__btn tour-card__btn--primary" 
+                onClick={() => tourStep < tourSteps.length - 1 ? setTourStep(tourStep + 1) : completeTour()}
+              >
+                {tourSteps[tourStep].action} →
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
