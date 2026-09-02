@@ -3,6 +3,7 @@ import { useAuth } from "@/_core/hooks/useAuth";
 import DashboardLayout from "@/components/DashboardLayout";
 import { startLogin } from "@/const";
 import { trpc } from "@/lib/trpc";
+import { Link } from "wouter";
 
 type ArchiveForm = { title: string; city: string; country: string; latitude: string; longitude: string; note: string; imageUrl: string; status: "draft" | "published" };
 const blankForm: ArchiveForm = { title: "", city: "", country: "", latitude: "", longitude: "", note: "", imageUrl: "", status: "draft" };
@@ -23,7 +24,7 @@ export default function ArchiveCommand() {
 
   if (loading) return <div className="platform-loading">OPENING ARCHIVE COMMAND</div>;
   if (!user) return <main className="command-gate"><p className="section-label">ARCHIVE COMMAND / AUTH REQUIRED</p><h1>Authorize the<br />field archive.</h1><button className="platform-action" onClick={() => startLogin()}>SIGN IN <b>↗</b></button></main>;
-  if (user.role !== "admin") return <main className="command-gate"><p className="section-label">ARCHIVE COMMAND / ACCESS LIMITED</p><h1>Observer access<br />only.</h1><a className="platform-action" href="/archive">VIEW PUBLISHED ARCHIVE <b>↗</b></a></main>;
+  if (user.role !== "admin") return <main className="command-gate"><p className="section-label">ARCHIVE COMMAND / ACCESS LIMITED</p><h1>Observer access<br />only.</h1><Link className="platform-action" href="/archive">VIEW PUBLISHED ARCHIVE <b>↗</b></Link></main>;
 
   const submit = (event: React.FormEvent) => {
     event.preventDefault();
@@ -50,6 +51,6 @@ export default function ArchiveCommand() {
       <label>VISIBILITY<select value={form.status} onChange={event => setForm({ ...form, status: event.target.value as ArchiveForm["status"] })}><option value="draft">Draft — only visible here</option><option value="published">Published — visible to visitors</option></select></label>
       <button className="platform-action" disabled={isBusy} type="submit">{editId ? "SAVE CHANGES" : form.status === "published" ? "PUBLISH DESTINATION NOTE" : "SAVE DRAFT"} <b>↗</b></button>
     </form>
-    <section className="archive-command__records"><div className="archive-command__title"><p>ARCHIVE INDEX</p><a href="/archive">VIEW PUBLIC ARCHIVE <b>↗</b></a></div>{archive.data?.map(note => <article key={note.id}><span>{note.status.toUpperCase()}</span><div><strong>{note.title}</strong><p>{note.city} / {note.country} — {note.latitude}° / {note.longitude}°</p></div><button type="button" onClick={() => beginEdit(note)}>EDIT</button><button type="button" onClick={() => remove.mutate({ id: note.id })}>REMOVE</button></article>)}</section>
+    <section className="archive-command__records"><div className="archive-command__title"><p>ARCHIVE INDEX</p><Link href="/archive">VIEW PUBLIC ARCHIVE <b>↗</b></Link></div>{archive.data?.map(note => <article key={note.id}><span>{note.status.toUpperCase()}</span><div><strong>{note.title}</strong><p>{note.city} / {note.country} — {note.latitude}° / {note.longitude}°</p></div><button type="button" onClick={() => beginEdit(note)}>EDIT</button><button type="button" onClick={() => remove.mutate({ id: note.id })}>REMOVE</button></article>)}</section>
   </div></DashboardLayout>;
 }

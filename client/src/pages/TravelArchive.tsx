@@ -1,6 +1,7 @@
 import { useAuth } from "@/_core/hooks/useAuth";
 import { trpc } from "@/lib/trpc";
 import { SaveSignalButton } from "@/components/SaveSignalButton";
+import { Link } from "wouter";
 
 /** fourtee2travel public archive: published records are managed through the private archive command console. */
 export default function TravelArchive() {
@@ -9,15 +10,15 @@ export default function TravelArchive() {
   return (
     <main className="travel-archive">
       <header className="platform-rail">
-        <a href="/" className="wordmark">fourtee2</a>
+        <Link href="/" className="wordmark">fourtee2</Link>
         <p>fourtee2travel / PUBLIC FIELD ARCHIVE</p>
-        <nav><a href="/travel">RETURN TO TRAVEL</a>{user?.role === "admin" && <a href="/archive/command">COMMAND</a>}</nav>
+        <nav><Link href="/travel">RETURN TO TRAVEL</Link>{user?.role === "admin" && <Link href="/archive/command">COMMAND</Link>}</nav>
       </header>
       <section className="travel-archive__hero">
         <p className="section-label">DESTINATION FIELD NOTES / PUBLISHED</p>
         <h1>Places worth<br /><span>holding onto.</span></h1>
         <p>Destination notes curated through fourtee2travel. Each entry gives you a route, an atmosphere, and a reason to go.</p>
-        <a className="platform-action" href="/travel">PLAN A TRIP <b>↗</b></a>
+        <Link className="platform-action" href="/travel">PLAN A TRIP <b>↗</b></Link>
       </section>
       <section className="archive-records">
         {archive.isLoading && <p className="archive-state">SCANNING PUBLISHED COORDINATES</p>}
@@ -29,7 +30,7 @@ export default function TravelArchive() {
             <SaveSignalButton signal={{ signalType: "destination", portal: "travel", sourceId: `destination-${note.id}`, title: note.title, subtitle: `${note.city}, ${note.country}`, href: "/travel" }} />
           </article>
         ))}
-        {!archive.isLoading && !archive.data?.length && <div className="archive-state archive-state--empty"><p>DESTINATION ARCHIVE / COMING SOON</p><h2>The first destination<br />note is on its way.</h2><span>In the meantime, use fourtee2travel to begin planning your next trip.</span>{user?.role === "admin" ? <a className="platform-action" href="/archive/command">ADD A DESTINATION NOTE <b>↗</b></a> : <a className="platform-action" href="/travel">PLAN A TRIP <b>↗</b></a>}</div>}
+        {!archive.isLoading && !archive.data?.length && <div className="archive-state archive-state--empty"><p>DESTINATION ARCHIVE / COMING SOON</p><h2>The first destination<br />note is on its way.</h2><span>In the meantime, use fourtee2travel to begin planning your next trip.</span>{user?.role === "admin" ? <Link className="platform-action" href="/archive/command">ADD A DESTINATION NOTE <b>↗</b></Link> : <Link className="platform-action" href="/travel">PLAN A TRIP <b>↗</b></Link>}</div>}
       </section>
     </main>
   );

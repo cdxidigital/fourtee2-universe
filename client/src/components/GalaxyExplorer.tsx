@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState, type CSSProperties, type PointerEvent, type WheelEvent } from "react";
+import { useLocation } from "wouter";
 import { currentMissions, findWorld, galaxyRelationships, galaxyWorlds, searchWorlds, type GalaxyWorld } from "@/lib/galaxy";
 
 type NavIntent = "map" | "worlds" | "search" | "about" | null;
@@ -54,6 +55,7 @@ export default function GalaxyExplorer({ navIntent, onIntentHandled }: GalaxyExp
   const [highContrast, setHighContrast] = useState(false);
   const [departingWorld, setDepartingWorld] = useState<string | null>(null);
   const [tourStep, setTourStep] = useState<number | null>(null);
+  const [, setLocation] = useLocation();
   const pointerRef = useRef<Map<number, { x: number; y: number }>>(new Map());
 
   useEffect(() => {
@@ -141,7 +143,7 @@ export default function GalaxyExplorer({ navIntent, onIntentHandled }: GalaxyExp
   function enterWorld(world: GalaxyWorld) {
     setDepartingWorld(world.id);
     setView(current => ({ ...current, zoom: 1.68 }));
-    window.setTimeout(() => { window.location.href = world.url; }, 520);
+    window.setTimeout(() => { setLocation(world.url); }, 520);
   }
 
   function adjustZoom(delta: number) {

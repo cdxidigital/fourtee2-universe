@@ -10,11 +10,16 @@ export default function WorldPage() {
   const material = world ? getWorldMaterial(world.id) : undefined;
   
   const [isAudioEnabled, setIsAudioEnabled] = useState(false);
+  const [audioError, setAudioError] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
     if (isAudioEnabled && audioRef.current) {
-      audioRef.current.play().catch(err => console.error("Audio playback failed:", err));
+      audioRef.current.play().catch(err => {
+        console.error("Audio playback failed:", err);
+        setAudioError(true);
+        setIsAudioEnabled(false);
+      });
     } else if (audioRef.current) {
       audioRef.current.pause();
     }
@@ -31,19 +36,35 @@ export default function WorldPage() {
         <Link className="wordmark" href="/?galaxy=1">fourtee2</Link>
         <p className="world-view__path"><span className="wordmark">fourtee2</span> / worlds / {world.id}</p>
         <div className="world-view__actions">
-          <button 
-            onClick={() => setIsAudioEnabled(!isAudioEnabled)} 
-            className="audio-toggle"
-            aria-label={isAudioEnabled ? "Disable ambient sound" : "Enable ambient sound"}
-          >
-            {isAudioEnabled ? <Volume2 size={12} /> : <VolumeX size={12} />}
-            <span>{isAudioEnabled ? "SIGNAL ACTIVE" : "SIGNAL MUTED"}</span>
-          </button>
+          {audioError ? (
+            <span className="audio-toggle opacity-40 cursor-not-allowed">
+              <VolumeX size={12} />
+              <span>SIGNAL UNAVAILABLE</span>
+            </span>
+          ) : (
+            <button 
+              onClick={() => setIsAudioEnabled(!isAudioEnabled)} 
+              className="audio-toggle"
+              aria-label={isAudioEnabled ? "Disable ambient sound" : "Enable ambient sound"}
+            >
+              {isAudioEnabled ? <Volume2 size={12} /> : <VolumeX size={12} />}
+              <span>{isAudioEnabled ? "SIGNAL ACTIVE" : "SIGNAL MUTED"}</span>
+            </button>
+          )}
           <Link href="/?galaxy=1" className="back-link"><ArrowLeft size={12} /> GALAXY</Link>
         </div>
       </header>
 
-      <audio ref={audioRef} src={ambienceUrl} loop />
+      <audio 
+        ref={audioRef} 
+        src={ambienceUrl} 
+        loop 
+        onError={() => {
+          console.error("Audio failed to load:", ambienceUrl);
+          setAudioError(true);
+          setIsAudioEnabled(false);
+        }}
+      />
 
       <section className="world-view__hero">
         <div className="world-view__visual">

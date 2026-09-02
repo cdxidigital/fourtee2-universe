@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import type { CSSProperties, FormEvent, KeyboardEvent } from "react";
+import { Link } from "wouter";
 import "./portal-fallback.css";
 import "../music-playlist.css";
 import "../playback-console.css";
@@ -371,13 +372,13 @@ export function PortalPage({ portal }: { portal: PortalKey }) {
   return (
     <div className={`portal-page portal-page--${data.key}`}>
       <header className="portal-header">
-        <a className="wordmark portal-header__home" href="/" aria-label="Return to fourtee2 home">fourtee2</a>
+        <Link className="wordmark portal-header__home" href="/" aria-label="Return to fourtee2 home">fourtee2</Link>
         <p className="portal-header__transmission">{data.eyebrow}</p>
         <nav aria-label="Portal navigation">
-          <a href="/board">BOARD</a>
-          <a className={data.key === "travel" ? "is-current nav-wordmark" : "nav-wordmark"} href="/travel">fourtee2travel</a>
-          <a className={data.key === "music" ? "is-current" : ""} href="/music">4[music]2</a>
-          <a className={data.key === "you" ? "is-current" : ""} href="/you">4[you]2</a>
+          <Link href="/board">BOARD</Link>
+          <Link className={data.key === "travel" ? "is-current nav-wordmark" : "nav-wordmark"} href="/travel">fourtee2travel</Link>
+          <Link className={data.key === "music" ? "is-current" : ""} href="/music">4[music]2</Link>
+          <Link className={data.key === "you" ? "is-current" : ""} href="/you">4[you]2</Link>
         </nav>
       </header>
 
@@ -452,7 +453,7 @@ export function PortalPage({ portal }: { portal: PortalKey }) {
 
         <section className="portal-return" aria-label="Return to fourtee2 universe">
           <p>END OF CURRENT FIELD</p>
-          <a className="wordmark" href="/">fourtee2</a>
+          <Link className="wordmark" href="/">fourtee2</Link>
           <span>RETURN TO THE UNIVERSE <b>↑</b></span>
         </section>
       </main>

@@ -12,7 +12,7 @@ export const ambienceUrls = {
   orbital: "/manus-storage/fourtee2-orbital-ambience_04c648e8.mp3",
   frequency: "/manus-storage/fourtee2-frequency-ambience_36a74de2.mp3",
   ritual: "/manus-storage/fourtee2-ritual-ambience_9e4385d0.mp3",
-  archive: "/manus-storage/fourtee2-orbital-ambience_04c648e8.mp3", // Archive uses orbital fallback
+  archive: "/manus-storage/fourtee2-archive-ambience_60f38347.mp3",
 };
 
 export const worldMaterials: Record<string, WorldMaterial> = {

@@ -108,7 +108,13 @@
 
 ## Guided Constellation and World Material
 
-- [ ] Define a first-visit constellation tour, fourteen world field notes, asset direction, and optional ambient soundscape system.
-- [ ] Create owned visual materials and original ambient audio for the world transmissions.
-- [ ] Build the guided tour, rich world field notes, optional soundscape controls, and subtle celestial hover interactions.
-- [ ] Validate the enriched galaxy across desktop and touch layouts, audio-consent states, and reduced-motion preferences.
+- [x] Define a first-visit constellation tour, fourteen world field notes, asset direction, and optional ambient soundscape system.
+- [x] Create owned visual materials and original ambient audio for the world transmissions.
+- [x] Build the guided tour, rich world field notes, optional soundscape controls, and subtle celestial hover interactions.
+- [x] Validate the enriched galaxy across desktop and touch layouts, audio-consent states, and reduced-motion preferences.
+
+## Enrichment Polish and Validation
+
+- [x] Create and wire a dedicated original archive ambient soundscape instead of reusing the orbital fallback.
+- [x] Add user-visible ambient-audio unavailable/error handling on world pages, including failed playback or missing asset states (added onError handler and SIGNAL UNAVAILABLE state).
+- [x] Add validation coverage for the enriched experience: guided tour behavior, world-page audio consent/off state, reduced-motion behavior, and touch/mobile interaction checks (documented in enrichment_verification_report.md).
