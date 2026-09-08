@@ -15,10 +15,14 @@ export default function Home() {
     setHasEntered(true);
     window.setTimeout(() => document.getElementById("galaxy")?.scrollIntoView({ behavior: "smooth", block: "start" }), 0);
   }, []);
-  const requestNavigation = (intent: Exclude<NavIntent, null>) => {
+  const requestNavigation = useCallback((intent: Exclude<NavIntent, null>) => {
     enterUniverse();
     setNavIntent(intent);
-  };
+  }, [enterUniverse]);
+
+  const handleIntentHandled = useCallback(() => {
+    setNavIntent(null);
+  }, []);
 
   return (
     <div className={`universe-shell galaxy-home${hasEntered ? " is-entered" : ""}`}>
@@ -35,7 +39,7 @@ export default function Home() {
       </header>
 
       <main id="top">
-        {!hasEntered ? <LiveHero onEnter={enterUniverse} /> : <GalaxyExplorer navIntent={navIntent} onIntentHandled={() => setNavIntent(null)} />}
+        {!hasEntered ? <LiveHero onEnter={enterUniverse} /> : <GalaxyExplorer navIntent={navIntent} onIntentHandled={handleIntentHandled} />}
       </main>
 
       <footer className="site-footer galaxy-footer">

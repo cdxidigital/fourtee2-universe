@@ -1363,3 +1363,111 @@ html {
   opacity: 1;
   text-shadow: 0 0 4px #000;
 }
+
+/* World Page Interactive Systems */
+.system-card--interactive {
+  cursor: pointer;
+  transition: transform 240ms cubic-bezier(0.23, 1, 0.32, 1), border-color 240ms ease;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+.system-card--interactive:hover {
+  border-color: var(--world-accent, rgba(255, 255, 255, 0.2));
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.system-card--interactive.is-active {
+  border-color: var(--world-accent);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.system-card__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.system-card__icon {
+  color: var(--world-accent);
+  opacity: 0.6;
+}
+
+.system-card__description {
+  font-size: 0.65rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 1.5rem;
+}
+
+.system-card__footer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.system-card__action {
+  align-self: flex-start;
+  font-size: 0.55rem;
+  letter-spacing: 0.15em;
+  padding: 0.35rem 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: transparent;
+  color: var(--world-accent);
+  font-weight: 600;
+  transition: all 200ms ease;
+}
+
+.system-card--interactive:hover .system-card__action {
+  background: var(--world-accent);
+  color: #000;
+  border-color: var(--world-accent);
+}
+
+.system-card__detail {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.6rem;
+  color: var(--world-accent);
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.world-view__nodes {
+  margin-top: 4rem;
+}
+
+.nodes-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.node-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.65rem;
+  padding: 0.4rem 0.8rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.7);
+  letter-spacing: 0.05em;
+  transition: all 200ms ease;
+}
+
+.node-tag:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: var(--world-accent);
+  color: #fff;
+}
+
+.node-tag small {
+  opacity: 0.4;
+  font-size: 0.5rem;
+}
